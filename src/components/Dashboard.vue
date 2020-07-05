@@ -111,7 +111,9 @@ export default {
         loadData: function () {
             const storage = localStorage
             // TODO: Add error handler
-            this.items = JSON.parse(storage.getItem('data')).dataArray
+            const sampleData = '{"dataArray":[{"name":"Water the cactus","emoji":"🌵","submitTimestamp":1593982453700,"targetTimestamp":1594587253700},{"name":"Boiler maintenance","emoji":"🚿","submitTimestamp":1593982571997,"targetTimestamp":1594587371997},{"name":"Feed the fishes","emoji":"🐠","submitTimestamp":1593982626926,"targetTimestamp":1594155426926},{"name":"Clean litter box","emoji":"🐈","submitTimestamp":1593982693072,"targetTimestamp":1594846693072},{"name":"10 minutes chrono","emoji":"⏱️","submitTimestamp":1593982741161,"targetTimestamp":1680383341161}]}'
+            if (storage.getItem('data')) this.items = JSON.parse(storage.getItem('data')).dataArray
+            else this.items = JSON.parse(sampleData).dataArray
             for (let i = 0; i < this.items.length; i++) {
                 var diff = this.items[i].targetTimestamp - this.items[i].submitTimestamp
                 var nowDiff = Date.now() - this.items[i].submitTimestamp
@@ -173,7 +175,7 @@ export default {
 .gauge-img .emoji       { display: flex; align-items: center; justify-content: center; position: absolute; width: 42px; height: 42px; border-radius: 3px; text-align: center; font-size: 1.4em; background-color: #FFFFFFFF; box-shadow: 0 0 5px #11224422; }
 .gauge-text             { display: inline-block; white-space: nowrap; padding-right: 6px; position: relative; z-index: 60; font-size: .8em; text-transform: uppercase; font-family: 'Roboto'; color: #00000077; background-color: #FFFFFFFF; }
 .gauge-progress         { height: 100%; width: 33%; position: relative; top: -32px; z-index: 50; background-color: #00CC99FF; border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
-.gauge-progress.yellow  { background-color: #DDBB44FF; }
+.gauge-progress.yellow  { background-color: #EEBB44FF; }
 .gauge-progress.red     { background-color: #DD4444FF; }
 
 .button-add             { margin: 0 auto; width: 30%; }

@@ -11,7 +11,7 @@
         <div class="hidden">{{ news }}</div>
         <Header page-title1="Traq" page-title2="Øn" />
         <Dashboard v-bind:add-emoji="selectedEmoji" @openEmojiPanel="toggleEmojiPanel" />
-        <footer>Dev by anthony.prospero@gmail.com <br> v0.1.0 ALPHA</footer>
+        <footer>Dev by anthony.prospero@gmail.com <br> v0.1.0 ALPHA - using VueJS</footer>
     </div>
 </template>
 
