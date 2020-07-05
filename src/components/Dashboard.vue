@@ -112,8 +112,10 @@ export default {
             const storage = localStorage
             // TODO: Add error handler
             const sampleData = '{"dataArray":[{"name":"Water the cactus","emoji":"🌵","submitTimestamp":1593982453700,"targetTimestamp":1594587253700},{"name":"Boiler maintenance","emoji":"🚿","submitTimestamp":1593982571997,"targetTimestamp":1594587371997},{"name":"Feed the fishes","emoji":"🐠","submitTimestamp":1593982626926,"targetTimestamp":1594155426926},{"name":"Clean litter box","emoji":"🐈","submitTimestamp":1593982693072,"targetTimestamp":1594846693072},{"name":"10 minutes chrono","emoji":"⏱️","submitTimestamp":1593982741161,"targetTimestamp":1680383341161}]}'
-            if (storage.getItem('data')) this.items = JSON.parse(storage.getItem('data')).dataArray
-            else this.items = JSON.parse(sampleData).dataArray
+            if (!storage.getItem('data')) {
+                localStorage.setItem('data', sampleData)
+            }
+            this.items = JSON.parse(storage.getItem('data')).dataArray
             for (let i = 0; i < this.items.length; i++) {
                 var diff = this.items[i].targetTimestamp - this.items[i].submitTimestamp
                 var nowDiff = Date.now() - this.items[i].submitTimestamp
