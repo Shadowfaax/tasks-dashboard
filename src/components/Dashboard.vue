@@ -186,8 +186,8 @@ export default {
 .gauge-action           { flex: 1 0 36px; margin: 0 0 0 5px; width: 36px; height: 36px; border-radius: 3px; display: flex; justify-content: space-around; align-items: center; font-size: 1.2em; overflow: hidden; font-family: Arial, Helvetica, sans-serif; font-size: 1.2em; text-transform: uppercase; color: #FFFFFFCC; }
 .gauge-action.shrink    { width: 0; }
 .gauge-action:hover     { box-shadow: 1px 1px 0px 1px #00000033 inset; transform: translate(1px, 1px); }
-.gauge-reset            { background-color: #CCEEEECC; box-shadow: -1px -1px 0 1px #00000022 inset; }
-.gauge-delete           { background-color: #FF999966; box-shadow: -1px -1px 0 1px #00000022 inset; }
+.gauge-reset            { background-color: #AACCCCCC; box-shadow: -1px -1px 0 1px #00000022 inset; }
+.gauge-delete           { background-color: #BB998866; box-shadow: -1px -1px 0 1px #00000022 inset; }
 .gauge-blk              { flex: 1 1 60%; height: 32px; margin-left: 36px; border-radius: 3px; padding: 0; border: 4px solid #FFFFFF; background-color: #FFFFFFCC; box-shadow: 1px 1px 1px 1px #11224422; background-image: url('../../public/images/patterns/black-twill.png'); box-sizing: content-box; }
 .gauge-blk:hover        { transform: scale(1.1); cursor: pointer; }
 .gauge-items            { width: 100%; height: 100%; background-color: #FFFFFFCC; }
