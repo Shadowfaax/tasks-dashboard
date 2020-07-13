@@ -77,8 +77,9 @@ footer { position: fixed; z-index: 555; bottom: 0; left: 0; width: 100%; padding
 .vertical-space-50  { display: block; width: 100%; height: 50px; }
 .flex-center-items  { display: flex; flex-flow: row nowrap; justify-content: space-between; align-items: center; }
 
-.infop-item         { display: inline-block; margin: 0 3px; padding: 4px 6px; background-color: #33445533; border-radius: 3px; text-align: center; }
-.info-panel         { background-color: #E9E9E9FF; width: 100%; padding: 14px; margin: 24px 0; display: flex; justify-content: space-around; align-items: center; font-size: 1.0em; color: #FFFFFFFF; text-shadow: 1px 1px 0 #00000044; border: 1px dashed #FFFFFFCC; border-radius: 9px; }
+.infop-item         { display: inline-block; margin: 0 3px; padding: 4px 6px; font-size: 11px; text-transform: uppercase; background-color: #33445533; border-radius: 3px; text-align: center; display: flex; align-items: center; }
+.infop-item-icon    { font-size: 14px; margin-right: 6px; }
+.info-panel         { background-color: #E9E9E9FF; width: 100%; padding: 14px; margin: 24px 0; display: flex; justify-content: space-around; align-items: center; font-size: 1.0em; color: #FFFFFFFF; border: 1px dashed #FFFFFFCC; border-radius: 9px; }
 .info-panel.right   { justify-content: flex-end; }
 .info-panel.nobg    { background-color: transparent; border: none; padding: 0; }
 .info-panel.info    { background-color: #66AACC55; }

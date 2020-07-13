@@ -2,8 +2,8 @@
     <div class="widgets-block">
 
         <div class="info-panel nobg right">
-            <span class="infop-item">⏱️ : reset gauge timer</span>
-            <span class="infop-item">❌ : remove gauge</span>
+            <span class="infop-item"><span class="infop-item-icon">⏱️</span> reset gauge timer</span>
+            <span class="infop-item"><span class="infop-item-icon">❌</span> remove gauge</span>
         </div>
 
         <div id="gauge-widgets" class="gauge-widgets-container">
