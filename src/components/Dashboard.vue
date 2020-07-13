@@ -1,6 +1,11 @@
 <template>
     <div class="widgets-block">
 
+        <div class="info-panel nobg right">
+            <span class="infop-item">⏱️ : reset gauge timer</span>
+            <span class="infop-item">❌ : remove gauge</span>
+        </div>
+
         <div id="gauge-widgets" class="gauge-widgets-container">
             <div v-for="(item, index) in items" v-bind:key="item.submitTimestamp" class="widget gauge">
                 <div class="gauge-blk" @click="gaugeCtrlToggle(index)">
@@ -11,7 +16,7 @@
                     <div class="gauge-progress" v-bind:class="[item.percent > 66 ? 'yellow' : '', item.percent > 95 ? 'red' : '']" v-bind:style="'width:'+item.percent+'%'"></div>
                 </div>
                 <a href="#" title="Reset timer" v-bind:class="{ 'shrink': gaugeToggle[index] }" class="gauge-action gauge-reset" :data-array-id="index" @click="resetGauge(index)">
-                    <span>♻️</span>
+                    <span><!-- ♻️⏱️ -->⏱️</span>
                 </a>
                 <a href="#" title="Remove gauge" v-bind:class="{ 'shrink': gaugeToggle[index] }" class="gauge-action gauge-delete" :data-array-id="index" @click="removeNode(index)">
                     <span>❌</span>
@@ -20,7 +25,7 @@
         </div>
 
         <div class="widget add">
-            <div class="button-add" @click="toggleForm"></div>
+            <button class="button-add" @click="toggleForm">{{ addButton }}</button>
         </div>
 
         <div v-if="formShow" class="widget add-widgets-block">
@@ -47,10 +52,6 @@
 </template>
 
 <script>
-// Form check
-function checkForm (e) {
-    // e.preventDefault()
-}
 // Form submit
 function submitAddForm () {
     const storage = localStorage
@@ -97,16 +98,26 @@ export default {
             addHours: '',
             addMinutes: '',
             addSeconds: '',
-            formShow: false
+            formShow: false,
+            addButton: '+'
         }
     },
     methods: {
         checkForm: function (event) {
-            checkForm(event)
+            // checkForm(event)
+        },
+        resetForm: function (event) {
+            this.addName = ''
+            this.addDays = ''
+            this.addHours = ''
+            this.addMinutes = ''
+            this.addSeconds = ''
         },
         submitAddForm: function (event) {
             submitAddForm()
             this.loadData()
+            this.resetForm()
+            this.toggleForm()
         },
         loadData: function () {
             const storage = localStorage
@@ -118,17 +129,21 @@ export default {
             this.items = JSON.parse(storage.getItem('data')).dataArray
             for (let i = 0; i < this.items.length; i++) {
                 var diff = this.items[i].targetTimestamp - this.items[i].submitTimestamp
-                var nowDiff = Date.now() - this.items[i].submitTimestamp
+                this.items[i].now = Date.now()
+                var nowDiff = this.items[i].now - this.items[i].submitTimestamp
                 var percent = nowDiff / diff * 100
                 if (percent > 100) percent = 100
                 this.items[i].percent = parseFloat(percent).toFixed(2)
             }
+        },
+        refreshData: function () {
         },
         openEmojiPanel: function () {
             this.$emit('openEmojiPanel')
         },
         toggleForm: function () {
             this.formShow = !this.formShow
+            this.addButton = this.formShow ? '-' : '+'
         },
         gaugeCtrlToggle: function (index) {
             // this.gaugeToggle[index] = !this.gaugeToggle[index]
@@ -143,18 +158,21 @@ export default {
         resetGauge: function (index) {
             const storage = localStorage
             const diff = this.items[index].targetTimestamp - this.items[index].submitTimestamp
-            console.log(this.items[index].targetTimestamp, this.items[index].submitTimestamp)
             this.items[index].targetTimestamp = Date.now() + diff
             this.items[index].submitTimestamp = Date.now()
-            console.log(this.items[index].targetTimestamp, this.items[index].submitTimestamp)
             var data = { dataArray: this.items }
             var dataStr = JSON.stringify(data)
             storage.setItem('data', dataStr)
             this.loadData()
+        },
+        animGauge: function () {
+            this.loadData()
+            setTimeout(this.animGauge, 100)
         }
     },
     created: function () {
         this.loadData()
+        this.animGauge()
     }
 }
 
@@ -165,11 +183,11 @@ export default {
 .widget                 { flex: 1 3 100%; margin: 16px 0; border-radius: 3px; }
 
 .gauge                  { display: flex; flex-flow: row nowrap; justify-content: space-between; align-items: center; }
-.gauge-action           { flex: 1 0 36px; margin: 0 0 0 5px; width: 36px; height: 36px; border-radius: 3px; display: flex; justify-content: space-around; align-items: center; font-size: 1.2em; overflow: hidden; }
+.gauge-action           { flex: 1 0 36px; margin: 0 0 0 5px; width: 36px; height: 36px; border-radius: 3px; display: flex; justify-content: space-around; align-items: center; font-size: 1.2em; overflow: hidden; font-family: Arial, Helvetica, sans-serif; font-size: 1.2em; text-transform: uppercase; color: #FFFFFFCC; }
 .gauge-action.shrink    { width: 0; }
 .gauge-action:hover     { box-shadow: 1px 1px 0px 1px #00000033 inset; transform: translate(1px, 1px); }
-.gauge-reset            { background-color: #66CC99CC; box-shadow: -1px -1px 0 1px #00000022 inset; }
-.gauge-delete           { background-color: #FF9999CC; box-shadow: -1px -1px 0 1px #00000022 inset; }
+.gauge-reset            { background-color: #CCEEEECC; box-shadow: -1px -1px 0 1px #00000022 inset; }
+.gauge-delete           { background-color: #FF999966; box-shadow: -1px -1px 0 1px #00000022 inset; }
 .gauge-blk              { flex: 1 1 60%; height: 32px; margin-left: 36px; border-radius: 3px; padding: 0; border: 4px solid #FFFFFF; background-color: #FFFFFFCC; box-shadow: 1px 1px 1px 1px #11224422; background-image: url('../../public/images/patterns/black-twill.png'); box-sizing: content-box; }
 .gauge-blk:hover        { transform: scale(1.1); cursor: pointer; }
 .gauge-items            { width: 100%; height: 100%; background-color: #FFFFFFCC; }
@@ -180,9 +198,8 @@ export default {
 .gauge-progress.yellow  { background-color: #EEBB44FF; }
 .gauge-progress.red     { background-color: #DD4444FF; }
 
-.button-add             { margin: 0 auto; width: 30%; }
-.button-add::after      { content: '+'; display: block; text-align: center; margin: 0 auto; width: 100%; border-radius: 5px; cursor: pointer; font-size: 1.6em; color: #FFFFFFFF; background-color: #99CCFF66; border: 2px dashed #FFFFFFFF; }
-.button-add:hover::after { background-color: #99CCFFFF; }
+.widget.add             { display: flex; justify-content: space-around; align-items: center; }
+.button-add             { margin: 0 auto; width: 30%; font-size: 1.4em; cursor: pointer; background-color: #55CCDD; }
 
 .add-widgets-block      { width: 100%; display: flex; flex-flow: row wrap; justify-content: space-between; }
 .add-widgets-inline-blk { width: 100%; display: flex; flex-flow: row wrap; justify-content: space-between; align-items: center; height: 36px; }
