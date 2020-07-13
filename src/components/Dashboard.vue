@@ -183,7 +183,7 @@ export default {
 .widget                 { flex: 1 3 100%; margin: 16px 0; border-radius: 3px; }
 
 .gauge                  { display: flex; flex-flow: row nowrap; justify-content: space-between; align-items: center; }
-.gauge-action           { flex: 1 0 36px; margin: 0 0 0 5px; width: 36px; height: 36px; border-radius: 3px; display: flex; justify-content: space-around; align-items: center; font-size: 1.2em; overflow: hidden; font-family: Arial, Helvetica, sans-serif; font-size: 1.2em; text-transform: uppercase; color: #FFFFFFCC; }
+.gauge-action           { /* flex: 1 0 36px; */ margin: 0 0 0 5px; width: 36px; height: 36px; border-radius: 3px; display: flex; justify-content: space-around; align-items: center; font-size: 1.2em; overflow: hidden; font-family: Arial, Helvetica, sans-serif; font-size: 1.2em; text-transform: uppercase; color: #FFFFFFCC; }
 .gauge-action.shrink    { width: 0; }
 .gauge-action:hover     { box-shadow: 1px 1px 0px 1px #00000033 inset; transform: translate(1px, 1px); }
 .gauge-reset            { background-color: #AACCCCCC; box-shadow: -1px -1px 0 1px #00000022 inset; }
