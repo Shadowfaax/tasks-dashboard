@@ -220,7 +220,7 @@ export default {
 .gauge-progress.dark-red    { background-color: #330000BB; }
 
 .widget.add             { display: flex; justify-content: space-around; align-items: center; }
-.button-add             { margin: 0 auto; width: 30%; max-width: 100px; font-size: 1.4em; cursor: pointer; background-color: #55CCDD; }
+.button-add             { margin: 0 auto; width: 30%; max-width: 100px; font-size: 1.4em; cursor: pointer; background-color: #55CCDD99; }
 
 .add-widgets-block      { width: 100%; display: flex; flex-flow: row wrap; justify-content: space-between; }
 .add-widgets-inline-blk { width: 100%; display: flex; flex-flow: row wrap; justify-content: space-between; align-items: center; height: 36px; }
