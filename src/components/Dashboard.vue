@@ -13,11 +13,15 @@
         <div id="gauge-widgets" class="gauge-widgets-container">
             <div v-for="(item, index) in items" v-bind:key="item.submitTimestamp" class="widget gauge">
                 <div class="gauge-blk" @click="gaugeCtrlToggle(index)">
-                    <div class="gauge-items flex-center-items">
-                        <div class="gauge-img flex-center-items"><span class="emoji" v-html="item.emoji"></span></div>
+                    <div class="gauge-items">
                         <div class="gauge-text">{{ item.name }}</div>
                     </div>
-                    <div class="gauge-progress" v-bind:class="[item.percent > 66 ? 'yellow' : '', item.percent > 90 ? 'red' : '', item.percent >= 100 ? 'dark-red' : '']" v-bind:style="'width:'+item.percent+'%'"></div>
+                    <div class="gauge-progress-container">
+                        <div class="gauge-img flex-center-items"><span class="emoji" v-html="item.emoji"></span></div>
+                        <div class="gauge-progress-blk">
+                            <div class="gauge-progress" v-bind:class="[item.percent > 66 ? 'yellow' : '', item.percent > 90 ? 'red' : '', item.percent >= 100 ? 'dark-red' : '']" v-bind:style="'width:'+item.percent+'%'"></div>
+                        </div>
+                    </div>
                 </div>
                 <div href="#" title="Gauge details" v-bind:class="[gaugeToggle[index] ? 'shrink' : '']" class="gauge-action gauge-reset" :data-array-id="index">
                     <span>🔍</span>
@@ -203,22 +207,28 @@ export default {
 </script>
 
 <style>
-.widget-block           { width: 100%; display: flex; flex-flow: row wrap; }
-.widget                 { flex: 1 3 100%; margin: 16px 0; border-radius: 3px; }
+.widgets-block              { width: 100%; /* display: flex; flex-flow: row wrap; */ }
+.widget                     { flex: 1 3 100%; margin: 16px 0; border-radius: 3px; }
 
-.gauge                      { display: flex; flex-flow: row nowrap; justify-content: space-between; align-items: center; }
-.gauge-action               { /* flex: 1 0 36px; */ margin: 0 0 0 5px; width: 36px; height: 36px; border-radius: 3px; display: flex; justify-content: space-around; align-items: center; font-size: 1.2em; overflow: hidden; font-family: Arial, Helvetica, sans-serif; font-size: 1.2em; text-transform: uppercase; color: #FFFFFFCC; cursor: pointer; }
+.gauge-widgets-container    { width: 100%; }
+.gauge                      { width: 100%; display: flex; flex-flow: row nowrap; justify-content: space-between; align-items: center; }
+
+.gauge-action               { flex-shrink: 0; margin: 0 0 0 5px; width: 36px; height: 36px; border-radius: 3px; display: flex; justify-content: space-around; align-items: center; font-size: 1.2em; overflow: hidden; font-family: Arial, Helvetica, sans-serif; font-size: 1.2em; text-transform: uppercase; color: #FFFFFFCC; cursor: pointer; }
 .gauge-action.shrink        { width: 0; padding: 0; margin: 0; }
 .gauge-action:hover         { box-shadow: 1px 1px 0px 1px #00000033 inset; transform: translate(1px, 1px); }
 .gauge-reset                { background-color: #AACCCCCC; box-shadow: -1px -1px 0 1px #00000022 inset; }
 .gauge-delete               { background-color: #BB998866; box-shadow: -1px -1px 0 1px #00000022 inset; }
-.gauge-blk                  { flex: 1 1 60%; height: 32px; margin-left: 36px; border-radius: 3px; padding: 0; border: 4px solid #FFFFFF; background-color: #FFFFFFCC; box-shadow: 1px 1px 0 1px #11224422, 2px 2px 20px #00000000; background-image: url('../../public/images/patterns/black-twill.png'); box-sizing: content-box; }
+.gauge-blk                  { flex: 1 1 60%; height: 32px; width: 100%; margin-left: 0/* 36px */; border-radius: 3px; padding: 0; border: 4px solid #FFFFFF; background-color: #FFFFFFCC; box-shadow: 1px 1px 0 1px #11224422, 2px 2px 20px #00000000; background-image: url('../../public/images/patterns/black-twill.png'); box-sizing: content-box; }
 .gauge-blk:hover            { transform: translateX(-1%); cursor: pointer; box-shadow: 1px 1px 0 1px #11224422, 0 6px 14px #00000011; }
-.gauge-items                { width: 100%; height: 100%; background-color: #FFFFFFCC; }
-.gauge-img                  { position: relative; top: 0px; left: -42px; z-index: 60; }
+
+.gauge-items                { width: 100%; height: 100%; display: flex; flex-flow: row-reverse nowrap; align-items: center; background-color: #FFFFFFCC; }
+.gauge-img                  { position: relative; left: -6px; z-index: 60; flex: 1 0 36px; }
 .gauge-img .emoji           { display: flex; align-items: center; justify-content: center; position: absolute; width: 42px; height: 42px; border-radius: 3px; text-align: center; font-size: 1.4em; background-color: #FFFFFFFF; box-shadow: 0 0 5px #11224422; }
-.gauge-text                 { display: inline-block; white-space: nowrap; padding-right: 6px; position: relative; z-index: 60; font-size: .8em; text-transform: uppercase; font-family: 'Roboto'; color: #00000077; background-color: #FFFFFFFF; }
-.gauge-progress             { height: 100%; width: 33%; position: relative; top: -32px; z-index: 50; background-color: #00CC99FF; border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
+.gauge-text                 { display: inline-block; max-width: 50vw; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 6px; position: relative; z-index: 60; font-size: .8em; text-transform: uppercase; font-family: 'Roboto'; color: #00000077; background-color: #FFFFFFFF; }
+
+.gauge-progress-container   { width: 100%; height: 100%; position: relative; top: -32px; z-index: 50; display: flex; flex-flow: row nowrap; justify-content: space-between; }
+.gauge-progress-blk         { width: 100%; height: 100%;  }
+.gauge-progress             { height: 100%; width: 33%; background-color: #00CC99FF; border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
 .gauge-progress.yellow      { background-color: #EEBB44FF; }
 .gauge-progress.red         { background-color: #DD4444FF; }
 .gauge-progress.dark-red    { background-color: #330000BB; }
@@ -235,4 +245,8 @@ export default {
 .add-widgets-inline-blk .input-blk button { width: 100%; padding: 5px 15px; font-family: 'Roboto', Arial, Helvetica, sans-serif; font-size: 1em; color: #FFFFFFFF; background-color: #3399CCFF; border: none; border-radius: 3px; box-shadow: -1px -1px 0px 1px #00000033 inset; }
 .add-widgets-inline-blk .input-blk input[type='submit']:hover,
 .add-widgets-inline-blk .input-blk button:hover { box-shadow: 1px 1px 0px 1px #00000033 inset; transform: translate(2px, 2px); }
+
+@media (min-width: 800px) {
+    .gauge-text { max-width: 70%; }
+}
 </style>

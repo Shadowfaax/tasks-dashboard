@@ -65,7 +65,7 @@ form    { width: 100%; }
 a       { text-decoration: none; color: #3399CCFF; }
 footer  { position: fixed; z-index: 555; bottom: 0; left: 0; width: 100%; padding: 10px 0; text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: .8em; color: #00000044; background-color: #F0F2F5; }
 
-#app { width: 90vw; margin: 0 auto; padding-bottom: 50px; font-family: Avenir, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; color: #2C3E50; }
+#app { width: 96vw; margin: 0 auto; padding-bottom: 50px; font-family: Avenir, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; color: #2C3E50; }
 .popup-header { position: fixed; z-index: 9999; top: 0; left: 0; padding: 10px 0; width: 100%; display: flex; flex-flow: row wrap; justify-content: space-around; align-items: center; background-color: #FFFFFFFF; box-shadow: 0 0 6px #00000022; }
 .fullscreen-popup { position: fixed; z-index: 9990; top: 0; left: 0; width: 100%; height: 100%; background-color: #FFFFFF22; backdrop-filter: blur(16px); overflow: auto; }
 .popup-content { margin-top: 60px; }
