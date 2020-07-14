@@ -46,6 +46,7 @@
                 </div>
                 <div class="add-widgets-inline-blk">
                     <div class="input-blk"><input data-regex="" id="add-emoji" v-model="addEmoji" type="hidden" placeholder="Emoji"><button @click.prevent="openEmojiPanel">Emoji {{ addEmoji }}</button></div>
+                    <div class="input-blk"><input type="number" min="0" max="10000" data-regex="[0-9]+" id="add-years" @keydown="checkForm" v-model="addYears" placeholder="Years"></div>
                     <div class="input-blk"><input type="number" min="0" max="10000" data-regex="[0-9]+" id="add-days" @keydown="checkForm" v-model="addDays" placeholder="Days"></div>
                 </div>
                 <div class="add-widgets-inline-blk">
@@ -72,6 +73,7 @@ function submitAddForm () {
     inputArray['add-name'] = document.getElementById('add-name').value ? document.getElementById('add-name').value : '- - - - -'
     inputArray['add-emoji'] = document.getElementById('add-emoji').value ? document.getElementById('add-emoji').value : '⏱️'
     inputArray['add-days'] = document.getElementById('add-days').value ? document.getElementById('add-days').value : 0
+    inputArray['add-years'] = document.getElementById('add-years').value ? document.getElementById('add-years').value : 0
     inputArray['add-hours'] = document.getElementById('add-hours').value ? document.getElementById('add-hours').value : 0
     inputArray['add-minutes'] = document.getElementById('add-minutes').value ? document.getElementById('add-minutes').value : 0
     inputArray['add-seconds'] = document.getElementById('add-seconds').value ? document.getElementById('add-seconds').value : 0
@@ -80,7 +82,7 @@ function submitAddForm () {
         name: inputArray['add-name'],
         emoji: inputArray['add-emoji'],
         submitTimestamp: Date.now(),
-        targetTimestamp: Date.now() + (((inputArray['add-days'] * 24 + inputArray['add-hours']) * 60 + inputArray['add-minutes']) * 60 + inputArray['add-seconds']) * 1000
+        targetTimestamp: Date.now() + ((((inputArray['add-years'] * 365 + inputArray['add-days']) * 24 + inputArray['add-hours']) * 60 + inputArray['add-minutes']) * 60 + inputArray['add-seconds']) * 1000
     }
 
     // Getting existing data from local storage
@@ -106,6 +108,7 @@ export default {
             gaugeToggle: [],
             displayInfo: false,
             addName: '',
+            addYears: '',
             addDays: '',
             addHours: '',
             addMinutes: '',
@@ -123,6 +126,8 @@ export default {
         },
         resetForm: function (event) {
             this.addName = ''
+            this.addEmoji = ''
+            this.addYears = ''
             this.addDays = ''
             this.addHours = ''
             this.addMinutes = ''
@@ -131,6 +136,7 @@ export default {
         submitAddForm: function (event) {
             submitAddForm()
             this.loadData()
+            this.setGaugeToggle()
             this.resetForm()
             this.toggleForm()
         },
@@ -222,8 +228,8 @@ export default {
 .gauge-blk:hover            { transform: translateX(-1%); cursor: pointer; box-shadow: 1px 1px 0 1px #11224422, 0 6px 14px #00000011; }
 
 .gauge-items                { width: 100%; height: 100%; display: flex; flex-flow: row-reverse nowrap; align-items: center; background-color: #FFFFFFCC; }
-.gauge-img                  { position: relative; left: -6px; z-index: 60; flex: 1 0 36px; }
-.gauge-img .emoji           { display: flex; align-items: center; justify-content: center; position: absolute; width: 42px; height: 42px; border-radius: 3px; text-align: center; font-size: 1.4em; background-color: #FFFFFFFF; box-shadow: 0 0 5px #11224422; }
+.gauge-img                  { position: relative; left: -6px; z-index: 60; flex: 1 0 34px; }
+.gauge-img .emoji           { display: flex; align-items: center; justify-content: center; position: absolute; width: 40px; height: 40px; border-radius: 3px; text-align: center; font-size: 1.4em; background-color: #FFFFFFFF; box-shadow: 0 0 5px #11224400; }
 .gauge-text                 { display: inline-block; max-width: 50vw; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 6px; position: relative; z-index: 60; font-size: .8em; text-transform: uppercase; font-family: 'Roboto'; color: #00000077; background-color: #FFFFFFFF; }
 
 .gauge-progress-container   { width: 100%; height: 100%; position: relative; top: -32px; z-index: 50; display: flex; flex-flow: row nowrap; justify-content: space-between; }
