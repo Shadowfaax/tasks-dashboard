@@ -1,9 +1,12 @@
 <template>
     <div class="widgets-block">
 
-        <div class="info-panel nobg right">
-            <span class="infop-item"><span class="infop-item-icon">⏱️</span> reset gauge timer</span>
-            <span class="infop-item"><span class="infop-item-icon">❌</span> remove gauge</span>
+        <div class="info-panel-blk">
+            <div class="info-panel info right">
+                <span  v-bind:class="[displayInfo ? '' : 'shrink']" class="infop-item"><span class="infop-item-icon">⏱️</span><div class="h-space-5"></div> gauge timer</span>
+                <span  v-bind:class="[displayInfo ? '' : 'shrink']" class="infop-item"><span class="infop-item-icon">❌</span><div class="h-space-5"></div>remove gauge</span>
+                <span @click="displayInfoToggle()" class="infop-item info-toggle"><span href="#" class="infop-item-icon">ℹ️</span></span>
+            </div>
         </div>
 
         <div id="gauge-widgets" class="gauge-widgets-container">
@@ -15,10 +18,10 @@
                     </div>
                     <div class="gauge-progress" v-bind:class="[item.percent > 66 ? 'yellow' : '', item.percent > 95 ? 'red' : '']" v-bind:style="'width:'+item.percent+'%'"></div>
                 </div>
-                <a href="#" title="Reset timer" v-bind:class="{ 'shrink': gaugeToggle[index] }" class="gauge-action gauge-reset" :data-array-id="index" @click="resetGauge(index)">
-                    <span><!-- ♻️⏱️ -->⏱️</span>
+                <a href="#" title="Reset timer" v-bind:class="[gaugeToggle[index] ? 'shrink' : '']" class="gauge-action gauge-reset" :data-array-id="index" @click="resetGauge(index)">
+                    <span>⏱️</span>
                 </a>
-                <a href="#" title="Remove gauge" v-bind:class="{ 'shrink': gaugeToggle[index] }" class="gauge-action gauge-delete" :data-array-id="index" @click="removeNode(index)">
+                <a href="#" title="Remove gauge" v-bind:class="[gaugeToggle[index] ? 'shrink' : '']" class="gauge-action gauge-delete" :data-array-id="index" @click="removeNode(index)">
                     <span>❌</span>
                 </a>
             </div>
@@ -93,6 +96,7 @@ export default {
         return {
             items: [],
             gaugeToggle: [],
+            displayInfo: false,
             addName: '',
             addDays: '',
             addHours: '',
@@ -105,6 +109,9 @@ export default {
     methods: {
         checkForm: function (event) {
             // checkForm(event)
+        },
+        displayInfoToggle: function (event) {
+            this.displayInfo = !this.displayInfo
         },
         resetForm: function (event) {
             this.addName = ''
@@ -144,9 +151,18 @@ export default {
         toggleForm: function () {
             this.formShow = !this.formShow
             this.addButton = this.formShow ? '-' : '+'
+            if (this.formShow) setTimeout(function () { window.scrollTo(0, document.body.scrollHeight) }, 50)
+            else window.scrollTo(0, 0)
+        },
+        setGaugeToggle: function (ex = -1) {
+            for (let i = 0; i < this.items.length; i++) {
+                if (i !== ex) this.$set(this.gaugeToggle, i, true)
+            }
         },
         gaugeCtrlToggle: function (index) {
-            // this.gaugeToggle[index] = !this.gaugeToggle[index]
+            this.$set(this.gaugeToggle, index, !this.gaugeToggle[index])
+            this.setGaugeToggle(index)
+            // setTimeout(this.$set(this.gaugeToggle, index, true), 3000)
         },
         removeNode: function (index) {
             const storage = localStorage
@@ -154,6 +170,7 @@ export default {
             var data = { dataArray: this.items }
             var dataStr = JSON.stringify(data)
             storage.setItem('data', dataStr)
+            this.gaugeCtrlToggle(index)
         },
         resetGauge: function (index) {
             const storage = localStorage
@@ -164,6 +181,7 @@ export default {
             var dataStr = JSON.stringify(data)
             storage.setItem('data', dataStr)
             this.loadData()
+            this.gaugeCtrlToggle(index)
         },
         animGauge: function () {
             this.loadData()
@@ -173,6 +191,7 @@ export default {
     created: function () {
         this.loadData()
         this.animGauge()
+        this.setGaugeToggle()
     }
 }
 
@@ -184,12 +203,12 @@ export default {
 
 .gauge                  { display: flex; flex-flow: row nowrap; justify-content: space-between; align-items: center; }
 .gauge-action           { /* flex: 1 0 36px; */ margin: 0 0 0 5px; width: 36px; height: 36px; border-radius: 3px; display: flex; justify-content: space-around; align-items: center; font-size: 1.2em; overflow: hidden; font-family: Arial, Helvetica, sans-serif; font-size: 1.2em; text-transform: uppercase; color: #FFFFFFCC; }
-.gauge-action.shrink    { width: 0; }
+.gauge-action.shrink    { width: 0; padding: 0; margin: 0; }
 .gauge-action:hover     { box-shadow: 1px 1px 0px 1px #00000033 inset; transform: translate(1px, 1px); }
 .gauge-reset            { background-color: #AACCCCCC; box-shadow: -1px -1px 0 1px #00000022 inset; }
 .gauge-delete           { background-color: #BB998866; box-shadow: -1px -1px 0 1px #00000022 inset; }
-.gauge-blk              { flex: 1 1 60%; height: 32px; margin-left: 36px; border-radius: 3px; padding: 0; border: 4px solid #FFFFFF; background-color: #FFFFFFCC; box-shadow: -1px -1px 0 1px #11224422 inset; background-image: url('../../public/images/patterns/black-twill.png'); box-sizing: content-box; }
-.gauge-blk:hover        { transform: scale(1.1); cursor: pointer; }
+.gauge-blk              { flex: 1 1 60%; height: 32px; margin-left: 36px; border-radius: 3px; padding: 0; border: 4px solid #FFFFFF; background-color: #FFFFFFCC; box-shadow: -1px -1px 0 1px #11224422 inset, 2px 2px 20px #00000000; background-image: url('../../public/images/patterns/black-twill.png'); box-sizing: content-box; }
+.gauge-blk:hover        { transform: translateX(-1%); cursor: pointer; box-shadow: -1px -1px 0 1px #11224422 inset, 0 4px 14px #00000011; }
 .gauge-items            { width: 100%; height: 100%; background-color: #FFFFFFCC; }
 .gauge-img              { position: relative; top: 0px; left: -42px; z-index: 60; }
 .gauge-img .emoji       { display: flex; align-items: center; justify-content: center; position: absolute; width: 42px; height: 42px; border-radius: 3px; text-align: center; font-size: 1.4em; background-color: #FFFFFFFF; box-shadow: 0 0 5px #11224422; }
