@@ -188,7 +188,7 @@ export default {
 .gauge-action:hover     { box-shadow: 1px 1px 0px 1px #00000033 inset; transform: translate(1px, 1px); }
 .gauge-reset            { background-color: #AACCCCCC; box-shadow: -1px -1px 0 1px #00000022 inset; }
 .gauge-delete           { background-color: #BB998866; box-shadow: -1px -1px 0 1px #00000022 inset; }
-.gauge-blk              { flex: 1 1 60%; height: 32px; margin-left: 36px; border-radius: 3px; padding: 0; border: 4px solid #FFFFFF; background-color: #FFFFFFCC; box-shadow: 1px 1px 0 1px #11224422; background-image: url('../../public/images/patterns/black-twill.png'); box-sizing: content-box; }
+.gauge-blk              { flex: 1 1 60%; height: 32px; margin-left: 36px; border-radius: 3px; padding: 0; border: 4px solid #FFFFFF; background-color: #FFFFFFCC; box-shadow: -1px -1px 0 1px #11224422 inset; background-image: url('../../public/images/patterns/black-twill.png'); box-sizing: content-box; }
 .gauge-blk:hover        { transform: scale(1.1); cursor: pointer; }
 .gauge-items            { width: 100%; height: 100%; background-color: #FFFFFFCC; }
 .gauge-img              { position: relative; top: 0px; left: -42px; z-index: 60; }
@@ -199,7 +199,7 @@ export default {
 .gauge-progress.red     { background-color: #DD4444FF; }
 
 .widget.add             { display: flex; justify-content: space-around; align-items: center; }
-.button-add             { margin: 0 auto; width: 30%; font-size: 1.4em; cursor: pointer; background-color: #55CCDD; }
+.button-add             { margin: 0 auto; width: 30%; max-width: 100px; font-size: 1.4em; cursor: pointer; background-color: #55CCDD; }
 
 .add-widgets-block      { width: 100%; display: flex; flex-flow: row wrap; justify-content: space-between; }
 .add-widgets-inline-blk { width: 100%; display: flex; flex-flow: row wrap; justify-content: space-between; align-items: center; height: 36px; }

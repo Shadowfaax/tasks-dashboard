@@ -11,7 +11,7 @@
         <div class="hidden">{{ news }}</div>
         <Header page-title1="Traq" page-title2="Øn" />
         <Dashboard v-bind:add-emoji="selectedEmoji" @openEmojiPanel="toggleEmojiPanel" />
-        <footer>Dev by anthony.prospero@gmail.com <br> {{ version }} - using VueJS</footer>
+        <footer>Dev by anthony.prospero@gmail.com <br> {{ version }} - powered by Vue.JS</footer>
     </div>
 </template>
 
@@ -58,7 +58,7 @@ body { background-color: #F0F2F5; }
 input { padding: 7px 12px; border: none; border-radius: 3px; background-color: #FFFFFF; font-size: .9em; letter-spacing: 1px; font-family: Helvetica, sans-serif; overflow: hidden; }
 input::placeholder { color: #999999AA; }
 input[type='submit'],
-button { padding: 5px 15px; font-family: 'Roboto', Arial, Helvetica, sans-serif; font-size: 1em; color: #FFFFFFFF; background-color: #3399CCFF; border: none; border-radius: 3px; box-shadow: -1px -1px 0px 1px #00000033 inset; }
+button { padding: 2px 15px; font-family: 'Roboto', Arial, Helvetica, sans-serif; font-size: 1em; color: #FFFFFFFF; background-color: #3399CCFF; border: none; border-radius: 3px; box-shadow: -1px -1px 0px 1px #00000033 inset; }
 input[type='submit']:hover,
 button:hover { box-shadow: 1px 1px 0px 1px #00000033 inset; transform: translate(2px, 2px); }
 form { width: 100%; }
