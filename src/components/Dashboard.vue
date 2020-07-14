@@ -2,10 +2,11 @@
     <div class="widgets-block">
 
         <div class="info-panel-blk">
-            <div class="info-panel info right">
-                <span  v-bind:class="[displayInfo ? '' : 'hidden']" class="infop-item"><span class="infop-item-icon">⏱️</span><div class="h-space-5"></div> gauge timer</span>
-                <span  v-bind:class="[displayInfo ? '' : 'hidden']" class="infop-item"><span class="infop-item-icon">❌</span><div class="h-space-5"></div>remove gauge</span>
-                <span @click="displayInfoToggle()" class="infop-item info-toggle"><span href="#" class="infop-item-icon">i</span></span>
+            <div class="info-panel info right"><!-- ⏳⌛🎛️📊🔍🔎 -->
+                <span  v-bind:class="[displayInfo ? '' : 'hidden']" class="infop-item"><span class="infop-item-icon">🔍</span><div class="h-space-5"></div> gauge details</span>
+                <span  v-bind:class="[displayInfo ? '' : 'hidden']" class="infop-item"><span class="infop-item-icon">⏳</span><div class="h-space-5"></div> gauge timer reset</span>
+                <span  v-bind:class="[displayInfo ? '' : 'hidden']" class="infop-item"><span class="infop-item-icon">🗑️</span><div class="h-space-5"></div>remove gauge</span>
+                <span @click="displayInfoToggle()" class="infop-item info-toggle"><span href="#" class="infop-item-icon">💡<!-- i --></span></span>
             </div>
         </div>
 
@@ -18,11 +19,14 @@
                     </div>
                     <div class="gauge-progress" v-bind:class="[item.percent > 66 ? 'yellow' : '', item.percent > 90 ? 'red' : '', item.percent >= 100 ? 'dark-red' : '']" v-bind:style="'width:'+item.percent+'%'"></div>
                 </div>
+                <div href="#" title="Gauge details" v-bind:class="[gaugeToggle[index] ? 'shrink' : '']" class="gauge-action gauge-reset" :data-array-id="index" @click="resetGauge(index)">
+                    <span>🔍</span>
+                </div>
                 <div href="#" title="Reset timer" v-bind:class="[gaugeToggle[index] ? 'shrink' : '']" class="gauge-action gauge-reset" :data-array-id="index" @click="resetGauge(index)">
-                    <span>⏱️</span>
+                    <span>⏳</span>
                 </div>
                 <div href="#" title="Remove gauge" v-bind:class="[gaugeToggle[index] ? 'shrink' : '']" class="gauge-action gauge-delete" :data-array-id="index" @click="removeNode(index)">
-                    <span>❌</span>
+                    <span>🗑️</span>
                 </div>
             </div>
         </div>
