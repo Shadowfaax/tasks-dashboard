@@ -122,7 +122,9 @@ export default {
             // checkForm(event)
         },
         displayInfoToggle: function (event) {
+            console.log(this.displayInfo)
             this.displayInfo = !this.displayInfo
+            console.log(this.displayInfo)
         },
         resetForm: function (event) {
             this.addName = ''
