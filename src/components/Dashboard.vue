@@ -3,8 +3,8 @@
 
         <div class="info-panel-blk">
             <div class="info-panel info right">
-                <span  v-bind:class="[displayInfo ? '' : 'shrink']" class="infop-item"><span class="infop-item-icon">⏱️</span><div class="h-space-5"></div> gauge timer</span>
-                <span  v-bind:class="[displayInfo ? '' : 'shrink']" class="infop-item"><span class="infop-item-icon">❌</span><div class="h-space-5"></div>remove gauge</span>
+                <span  v-bind:class="[displayInfo ? '' : 'hidden']" class="infop-item"><span class="infop-item-icon">⏱️</span><div class="h-space-5"></div> gauge timer</span>
+                <span  v-bind:class="[displayInfo ? '' : 'hidden']" class="infop-item"><span class="infop-item-icon">❌</span><div class="h-space-5"></div>remove gauge</span>
                 <span @click="displayInfoToggle()" class="infop-item info-toggle"><span href="#" class="infop-item-icon">i</span></span>
             </div>
         </div>
