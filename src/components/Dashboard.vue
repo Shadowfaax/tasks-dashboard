@@ -16,7 +16,7 @@
                         <div class="gauge-img flex-center-items"><span class="emoji" v-html="item.emoji"></span></div>
                         <div class="gauge-text">{{ item.name }}</div>
                     </div>
-                    <div class="gauge-progress" v-bind:class="[item.percent > 66 ? 'yellow' : '', item.percent > 95 ? 'red' : '']" v-bind:style="'width:'+item.percent+'%'"></div>
+                    <div class="gauge-progress" v-bind:class="[item.percent > 66 ? 'yellow' : '', item.percent > 90 ? 'red' : '', item.percent >= 100 ? 'dark-red' : '']" v-bind:style="'width:'+item.percent+'%'"></div>
                 </div>
                 <a href="#" title="Reset timer" v-bind:class="[gaugeToggle[index] ? 'shrink' : '']" class="gauge-action gauge-reset" :data-array-id="index" @click="resetGauge(index)">
                     <span>⏱️</span>
@@ -183,14 +183,15 @@ export default {
             this.loadData()
             this.gaugeCtrlToggle(index)
         },
-        animGauge: function () {
+        animGauge: function (timer = 1000) {
             this.loadData()
-            setTimeout(this.animGauge, 100)
+            const fct = this.animGauge
+            setTimeout(function () { fct(timer) }, timer)
         }
     },
     created: function () {
         this.loadData()
-        this.animGauge()
+        this.animGauge(50)
         this.setGaugeToggle()
     }
 }
@@ -201,21 +202,22 @@ export default {
 .widget-block           { width: 100%; display: flex; flex-flow: row wrap; }
 .widget                 { flex: 1 3 100%; margin: 16px 0; border-radius: 3px; }
 
-.gauge                  { display: flex; flex-flow: row nowrap; justify-content: space-between; align-items: center; }
-.gauge-action           { /* flex: 1 0 36px; */ margin: 0 0 0 5px; width: 36px; height: 36px; border-radius: 3px; display: flex; justify-content: space-around; align-items: center; font-size: 1.2em; overflow: hidden; font-family: Arial, Helvetica, sans-serif; font-size: 1.2em; text-transform: uppercase; color: #FFFFFFCC; }
-.gauge-action.shrink    { width: 0; padding: 0; margin: 0; }
-.gauge-action:hover     { box-shadow: 1px 1px 0px 1px #00000033 inset; transform: translate(1px, 1px); }
-.gauge-reset            { background-color: #AACCCCCC; box-shadow: -1px -1px 0 1px #00000022 inset; }
-.gauge-delete           { background-color: #BB998866; box-shadow: -1px -1px 0 1px #00000022 inset; }
-.gauge-blk              { flex: 1 1 60%; height: 32px; margin-left: 36px; border-radius: 3px; padding: 0; border: 4px solid #FFFFFF; background-color: #FFFFFFCC; box-shadow: -1px -1px 0 1px #11224422 inset, 2px 2px 20px #00000000; background-image: url('../../public/images/patterns/black-twill.png'); box-sizing: content-box; }
-.gauge-blk:hover        { transform: translateX(-1%); cursor: pointer; box-shadow: -1px -1px 0 1px #11224422 inset, 0 4px 14px #00000011; }
-.gauge-items            { width: 100%; height: 100%; background-color: #FFFFFFCC; }
-.gauge-img              { position: relative; top: 0px; left: -42px; z-index: 60; }
-.gauge-img .emoji       { display: flex; align-items: center; justify-content: center; position: absolute; width: 42px; height: 42px; border-radius: 3px; text-align: center; font-size: 1.4em; background-color: #FFFFFFFF; box-shadow: 0 0 5px #11224422; }
-.gauge-text             { display: inline-block; white-space: nowrap; padding-right: 6px; position: relative; z-index: 60; font-size: .8em; text-transform: uppercase; font-family: 'Roboto'; color: #00000077; background-color: #FFFFFFFF; }
-.gauge-progress         { height: 100%; width: 33%; position: relative; top: -32px; z-index: 50; background-color: #00CC99FF; border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
-.gauge-progress.yellow  { background-color: #EEBB44FF; }
-.gauge-progress.red     { background-color: #DD4444FF; }
+.gauge                      { display: flex; flex-flow: row nowrap; justify-content: space-between; align-items: center; }
+.gauge-action               { /* flex: 1 0 36px; */ margin: 0 0 0 5px; width: 36px; height: 36px; border-radius: 3px; display: flex; justify-content: space-around; align-items: center; font-size: 1.2em; overflow: hidden; font-family: Arial, Helvetica, sans-serif; font-size: 1.2em; text-transform: uppercase; color: #FFFFFFCC; }
+.gauge-action.shrink        { width: 0; padding: 0; margin: 0; }
+.gauge-action:hover         { box-shadow: 1px 1px 0px 1px #00000033 inset; transform: translate(1px, 1px); }
+.gauge-reset                { background-color: #AACCCCCC; box-shadow: -1px -1px 0 1px #00000022 inset; }
+.gauge-delete               { background-color: #BB998866; box-shadow: -1px -1px 0 1px #00000022 inset; }
+.gauge-blk                  { flex: 1 1 60%; height: 32px; margin-left: 36px; border-radius: 3px; padding: 0; border: 4px solid #FFFFFF; background-color: #FFFFFFCC; box-shadow: -1px -1px 0 1px #11224422 inset, 2px 2px 20px #00000000; background-image: url('../../public/images/patterns/black-twill.png'); box-sizing: content-box; }
+.gauge-blk:hover            { transform: translateX(-1%); cursor: pointer; box-shadow: -1px -1px 0 1px #11224422 inset, 0 4px 14px #00000011; }
+.gauge-items                { width: 100%; height: 100%; background-color: #FFFFFFCC; }
+.gauge-img                  { position: relative; top: 0px; left: -42px; z-index: 60; }
+.gauge-img .emoji           { display: flex; align-items: center; justify-content: center; position: absolute; width: 42px; height: 42px; border-radius: 3px; text-align: center; font-size: 1.4em; background-color: #FFFFFFFF; box-shadow: 0 0 5px #11224422; }
+.gauge-text                 { display: inline-block; white-space: nowrap; padding-right: 6px; position: relative; z-index: 60; font-size: .8em; text-transform: uppercase; font-family: 'Roboto'; color: #00000077; background-color: #FFFFFFFF; }
+.gauge-progress             { height: 100%; width: 33%; position: relative; top: -32px; z-index: 50; background-color: #00CC99FF; border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
+.gauge-progress.yellow      { background-color: #EEBB44FF; }
+.gauge-progress.red         { background-color: #DD4444FF; }
+.gauge-progress.dark-red    { background-color: #330000BB; }
 
 .widget.add             { display: flex; justify-content: space-around; align-items: center; }
 .button-add             { margin: 0 auto; width: 30%; max-width: 100px; font-size: 1.4em; cursor: pointer; background-color: #55CCDD; }
