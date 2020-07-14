@@ -5,7 +5,7 @@
             <div class="info-panel info right">
                 <span  v-bind:class="[displayInfo ? '' : 'shrink']" class="infop-item"><span class="infop-item-icon">⏱️</span><div class="h-space-5"></div> gauge timer</span>
                 <span  v-bind:class="[displayInfo ? '' : 'shrink']" class="infop-item"><span class="infop-item-icon">❌</span><div class="h-space-5"></div>remove gauge</span>
-                <span @click="displayInfoToggle()" class="infop-item info-toggle"><span href="#" class="infop-item-icon">ℹ️</span></span>
+                <span @click="displayInfoToggle()" class="infop-item info-toggle"><span href="#" class="infop-item-icon">i</span></span>
             </div>
         </div>
 
@@ -18,12 +18,12 @@
                     </div>
                     <div class="gauge-progress" v-bind:class="[item.percent > 66 ? 'yellow' : '', item.percent > 90 ? 'red' : '', item.percent >= 100 ? 'dark-red' : '']" v-bind:style="'width:'+item.percent+'%'"></div>
                 </div>
-                <a href="#" title="Reset timer" v-bind:class="[gaugeToggle[index] ? 'shrink' : '']" class="gauge-action gauge-reset" :data-array-id="index" @click="resetGauge(index)">
+                <div href="#" title="Reset timer" v-bind:class="[gaugeToggle[index] ? 'shrink' : '']" class="gauge-action gauge-reset" :data-array-id="index" @click="resetGauge(index)">
                     <span>⏱️</span>
-                </a>
-                <a href="#" title="Remove gauge" v-bind:class="[gaugeToggle[index] ? 'shrink' : '']" class="gauge-action gauge-delete" :data-array-id="index" @click="removeNode(index)">
+                </div>
+                <div href="#" title="Remove gauge" v-bind:class="[gaugeToggle[index] ? 'shrink' : '']" class="gauge-action gauge-delete" :data-array-id="index" @click="removeNode(index)">
                     <span>❌</span>
-                </a>
+                </div>
             </div>
         </div>
 
@@ -203,7 +203,7 @@ export default {
 .widget                 { flex: 1 3 100%; margin: 16px 0; border-radius: 3px; }
 
 .gauge                      { display: flex; flex-flow: row nowrap; justify-content: space-between; align-items: center; }
-.gauge-action               { /* flex: 1 0 36px; */ margin: 0 0 0 5px; width: 36px; height: 36px; border-radius: 3px; display: flex; justify-content: space-around; align-items: center; font-size: 1.2em; overflow: hidden; font-family: Arial, Helvetica, sans-serif; font-size: 1.2em; text-transform: uppercase; color: #FFFFFFCC; }
+.gauge-action               { /* flex: 1 0 36px; */ margin: 0 0 0 5px; width: 36px; height: 36px; border-radius: 3px; display: flex; justify-content: space-around; align-items: center; font-size: 1.2em; overflow: hidden; font-family: Arial, Helvetica, sans-serif; font-size: 1.2em; text-transform: uppercase; color: #FFFFFFCC; cursor: pointer; }
 .gauge-action.shrink        { width: 0; padding: 0; margin: 0; }
 .gauge-action:hover         { box-shadow: 1px 1px 0px 1px #00000033 inset; transform: translate(1px, 1px); }
 .gauge-reset                { background-color: #AACCCCCC; box-shadow: -1px -1px 0 1px #00000022 inset; }
