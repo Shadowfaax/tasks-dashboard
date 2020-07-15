@@ -59,8 +59,8 @@ export default {
 </script>
 
 <style scoped>
-.widget-time-blk { justify-content: space-around; }
-.widget-date, .widget-time { flex: 0 1 10%; padding: 10px 16px; border-radius: 6px; font-family: 'Roboto', Arial, Helvetica, sans-serif; font-weight: 300; font-size: 1.4em; letter-spacing: 2px; text-align: center; color: #FFFFFFCC; background-color: #00224444; }
+.widget-time-blk { justify-content: center; }
+.widget-date, .widget-time { flex: 0 1 10%; padding: 10px 16px; margin: 0 10px; border-radius: 6px; font-family: 'Roboto', Arial, Helvetica, sans-serif; font-weight: 300; font-size: 1.4em; letter-spacing: 2px; text-align: center; color: #FFFFFFCC; background-color: #00224444; }
 
 /* DARK MODE */
 #app.dark .widget-date, #app.dark .widget-time { background-color: #FFFFFF11; }
