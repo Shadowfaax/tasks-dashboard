@@ -2,11 +2,11 @@
     <div class="widgets-block">
 
         <div class="info-panel-blk">
-            <div class="info-panel info right"><!-- ⏳⌛🎛️📊🔍🔎 -->
+            <div class="info-panel right"><!-- ⏳⌛🎛️📊🔍🔎⏱️⏲️ -->
                 <span @click="displayInfoToggle()" class="infop-item info-toggle"><span href="#" class="infop-item-icon">💡<!-- i --></span></span>
-                <span  v-bind:class="[displayInfo ? '' : 'hidden']" class="infop-item"><span class="infop-item-icon">🗑️</span><div class="h-space-5"></div>remove gauge</span>
-                <span  v-bind:class="[displayInfo ? '' : 'hidden']" class="infop-item"><span class="infop-item-icon">⏳</span><div class="h-space-5"></div> gauge timer reset</span>
-                <span  v-bind:class="[displayInfo ? '' : 'hidden']" class="infop-item"><span class="infop-item-icon">🔍</span><div class="h-space-5"></div> gauge details</span>
+                <span v-bind:class="[displayInfo ? '' : 'hidden']" class="infop-item"><span class="infop-item-icon">🗑️</span><div class="h-space-5"></div>remove gauge</span>
+                <span v-bind:class="[displayInfo ? '' : 'hidden']" class="infop-item"><span class="infop-item-icon">⏱️</span><div class="h-space-5"></div> gauge timer reset</span>
+                <span v-show="false" v-bind:class="[displayInfo ? '' : 'hidden']" class="infop-item"><span class="infop-item-icon">🔍</span><div class="h-space-5"></div> gauge details</span>
             </div>
         </div>
 
@@ -23,11 +23,11 @@
                         </div>
                     </div>
                 </div>
-                <div href="#" title="Gauge details" v-bind:class="[gaugeToggle[index] ? 'shrink' : '']" class="gauge-action gauge-reset" :data-array-id="index">
+                <div v-show="false" href="#" title="Gauge details" v-bind:class="[gaugeToggle[index] ? 'shrink' : '']" class="gauge-action gauge-reset" :data-array-id="index">
                     <span>🔍</span>
                 </div>
                 <div href="#" title="Reset timer" v-bind:class="[gaugeToggle[index] ? 'shrink' : '']" class="gauge-action gauge-reset" :data-array-id="index" @click="resetGauge(index)">
-                    <span>⏳</span>
+                    <span>⏱️</span>
                 </div>
                 <div href="#" title="Remove gauge" v-bind:class="[gaugeToggle[index] ? 'shrink' : '']" class="gauge-action gauge-delete" :data-array-id="index" @click="removeNode(index)">
                     <span>🗑️</span>
@@ -238,13 +238,15 @@ export default {
 .gauge-progress             { height: 100%; width: 33%; background-color: #00CC99FF; border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
 .gauge-progress.yellow      { background-color: #EEBB44FF; }
 .gauge-progress.red         { background-color: #DD4444FF; }
-.gauge-progress.dark-red    { background-color: #330000BB; }
+.gauge-progress.dark-red    { background-color: #771111BB; }
 
-.widget.add             { display: flex; justify-content: space-around; align-items: center; }
+.widget.add             { margin: 42px 0; display: flex; justify-content: space-around; align-items: center; }
 .button-add             { margin: 0 auto; width: 30%; max-width: 100px; font-size: 1.4em; cursor: pointer; background-color: #55CCDD99; }
 
-.add-widgets-block      { width: 100%; display: flex; flex-flow: row wrap; justify-content: space-between; }
+.add-widgets-block      { width: 100%; display: flex; flex-flow: row wrap; justify-content: space-between; overflow: hidden; }
 .add-widgets-inline-blk { width: 100%; display: flex; flex-flow: row wrap; justify-content: space-between; align-items: center; height: 36px; }
+.add-widgets-inline-blk:nth-child(odd)  { animation: .3s ease-in-out 0s both slide-in-from-left; }
+.add-widgets-inline-blk:nth-child(even)  { animation: .3s ease-in-out 0s both slide-in-from-right; }
 .add-widgets-inline-blk .input-blk { flex: 1 1 30%; margin-left: 2%; }
 .add-widgets-inline-blk .input-blk:nth-child(1) { margin-left: 0; }
 .add-widgets-inline-blk .input-blk input { width: 100%; background-color: #00000011; }

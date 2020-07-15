@@ -78,6 +78,10 @@ export default {
 </script>
 
 <style>
+/* ANIMATIONS */
+@keyframes slide-in-from-left   { from { transform: translateX(-40vw); }  to { transform: translateX(0); } }
+@keyframes slide-in-from-right  { from { transform: translateX(40vw); }  to { transform: translateX(0); } }
+
 /* HTML */
 * { box-sizing: border-box; transition: all ease .2s, transform ease-in-out .2s, width ease-in-out .2s, background-color ease .2s, box-shadow ease .2s; }
 html, body { margin: 0; padding: 0; }
@@ -102,6 +106,9 @@ footer  { bottom: 0; left: 0; width: 90%; margin: 80px auto 0 auto; padding: 14p
 .shrink                 { width: 0; padding: 0; margin: 0; overflow: hidden; }
 .h-space-5              { display: inline-block; width:  5px; }
 .h-space-10             { display: inline-block; width: 10px; }
+.v-space-10             { display: inline-block; height: 10px; }
+.v-space-20             { display: inline-block; height: 20px; }
+.v-space-30             { display: inline-block; height: 30px; }
 .center                 { text-align: center; }
 .vertical-space-30      { display: block; width: 100%; height: 30px; }
 .vertical-space-50      { display: block; width: 100%; height: 50px; }
@@ -109,8 +116,8 @@ footer  { bottom: 0; left: 0; width: 90%; margin: 80px auto 0 auto; padding: 14p
 .switch-btn             { width: 48px; height: 24px; border-radius: 12px; display: flex; flex-flow: row nowrap; align-items: center; background-color: #99CCEEFF; box-shadow: 1px 1px 0 1px #00000044 inset; cursor: pointer; }
 .switch-btn .switch     { width: 22px; height: 22px; border-radius: 11px; background-color: #00000044; box-shadow: -1px -1px 0 1px #00000022 inset; }
 .switch-btn.on          { background-color: #336688FF; flex-flow: row-reverse nowrap; }
-/* .switch-btn::before     { content: '🌞'; position: relative; left: -23px; }
-.switch-btn.on::before  { content: '🌚'; } */
+.switch-btn::after      { content: '🌞'; position: relative; top: -1px; left: 1px; font-size: 1.0em; opacity: .5; }
+.switch-btn.on::after   { content: '🌚'; left: -2px; }
 
 /* APP */
 #app { width: 100%; min-height: 100vw; padding: 0 2vw; margin: 0 auto; font-family: Avenir, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; color: #2C3E50; }
@@ -123,10 +130,10 @@ footer  { bottom: 0; left: 0; width: 90%; margin: 80px auto 0 auto; padding: 14p
 .info-panel         { padding: 7px 7px; display: flex; flex-flow: row-reverse wrap; justify-content: space-around; align-items: center; /* flex: 0; */ font-size: 1.0em; color: #FFFFFFFF; border-radius: 6px; cursor: default; }
 .info-panel.right   { justify-content: flex-end; }
 .info-panel.nobg    { background-color: transparent; border: none; padding: 0; }
-.infop-item         { display: inline-block; flex-grow: 1; overflow: hidden; white-space: nowrap; height: 27px; margin: 2px 3px; padding: 4px 6px; font-size: 11px; text-transform: uppercase; background-color: #33445533; border-radius: 3px; letter-spacing: 1px; text-align: center; display: flex; align-items: center; }
+.infop-item         { display: inline-block; flex-grow: 1; overflow: hidden; white-space: nowrap; height: 30px; margin: 2px 3px; padding: 4px 6px; font-size: 12px; text-transform: uppercase; background-color: #11223322; border-radius: 3px; letter-spacing: 1px; text-align: center; display: flex; align-items: center; }
 .infop-item.hidden  { display: none; }
-.infop-item-icon    { font-size: 16px; font-weight: 900; text-transform: lowercase; font-family: 'Times New Roman', Times, serif; }
-.info-toggle        { display: flex; flex-flow: row wrap; justify-content: space-around; align-items: center; flex: 0 0 27px; width: 27px; height: 27px; text-align: center; cursor: pointer; color: #2288AAFF; background-color: #FFFFFF00; }
+.infop-item-icon    { font-size: 22px; font-weight: 900; text-transform: lowercase; font-family: 'Times New Roman', Times, serif; }
+.info-toggle        { justify-content: space-around; align-items: center; width: 36spx; height: 30px; text-align: center; cursor: pointer; color: #2288AAFF; background-color: #FFFFFF00; }
 .info-toggle:hover  { background-color: #FFFFFFCC; }
 
 /* DARK MODE */
@@ -143,6 +150,8 @@ footer  { bottom: 0; left: 0; width: 90%; margin: 80px auto 0 auto; padding: 14p
 @media (min-width: 800px) {
     html, body { height: 100%; margin: 0; padding: 0; }
     #app { min-height: 100vh; }
+    .header-block { padding: 36px 0; height: auto; }
+    .page-title { font-size: 108px; }
     .top-btn { position: absolute; margin: 0 -380px 0 0; top: 6px; right: 50%; }
     .app-blk { width: 800px; min-height: 100vh; margin: 0 auto; padding: 50px; padding-top: 10px; background-color: #00000005; }
     .popup-header { width: 800px; left: 50%; margin-left: -400px; }
