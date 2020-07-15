@@ -64,7 +64,11 @@ export default {
         },
         selectEmoji: function (emoji) {
             this.selectedEmoji = emoji
+            // console.log('coucou ' + emoji)
             this.toggleEmojiPanel()
+        },
+        resetEmoji: function (emoji) {
+            alert('ù:*;:ù')
         }
     },
     created: function () {
@@ -102,8 +106,8 @@ footer  { bottom: 0; left: 0; width: 90%; margin: 80px auto 0 auto; padding: 14p
 .vertical-space-30      { display: block; width: 100%; height: 30px; }
 .vertical-space-50      { display: block; width: 100%; height: 50px; }
 .flex-center-items      { display: flex; flex-flow: row nowrap; justify-content: space-between; align-items: center; }
-.switch-btn             { width: 36px; height: 16px; border-radius: 8px; display: flex; flex-flow: row nowrap; align-items: center; background-color: #99CCEEFF; box-shadow: 1px 1px 0 1px #00000044 inset; cursor: pointer; }
-.switch-btn .switch     { width: 14px; height: 14px; border-radius: 7px; background-color: #00000044; box-shadow: -1px -1px 0 1px #00000022 inset; }
+.switch-btn             { width: 48px; height: 24px; border-radius: 12px; display: flex; flex-flow: row nowrap; align-items: center; background-color: #99CCEEFF; box-shadow: 1px 1px 0 1px #00000044 inset; cursor: pointer; }
+.switch-btn .switch     { width: 22px; height: 22px; border-radius: 11px; background-color: #00000044; box-shadow: -1px -1px 0 1px #00000022 inset; }
 .switch-btn.on          { background-color: #336688FF; flex-flow: row-reverse nowrap; }
 /* .switch-btn::before     { content: '🌞'; position: relative; left: -23px; }
 .switch-btn.on::before  { content: '🌚'; } */
@@ -113,7 +117,7 @@ footer  { bottom: 0; left: 0; width: 90%; margin: 80px auto 0 auto; padding: 14p
 .popup-header { position: fixed; z-index: 9999; top: 0; left: 0; padding: 10px 0; width: 100%; display: flex; flex-flow: row wrap; justify-content: space-around; align-items: center; background-color: #FFFFFFFF; box-shadow: 0 0 6px #00000022; }
 .fullscreen-popup { position: fixed; z-index: 9990; top: 0; left: 0; width: 100%; height: 100%; background-color: #FFFFFF22; backdrop-filter: blur(16px); overflow: auto; }
 .popup-content { margin-top: 60px; }
-.top-btn { position: absolute; top: 6px; right: 6px; }
+.top-btn { position: absolute; top: 8px; right: 6px; }
 
 .info-panel-blk     { display: flex; flex-flow: row wrap; justify-content: flex-end; margin: 0; text-align: right; }
 .info-panel         { padding: 7px 7px; display: flex; flex-flow: row-reverse wrap; justify-content: space-around; align-items: center; /* flex: 0; */ font-size: 1.0em; color: #FFFFFFFF; border-radius: 6px; cursor: default; }
@@ -126,12 +130,14 @@ footer  { bottom: 0; left: 0; width: 90%; margin: 80px auto 0 auto; padding: 14p
 .info-toggle:hover  { background-color: #FFFFFFCC; }
 
 /* DARK MODE */
-#app.dark               { background-color: #303234FF; }
-#app.dark footer        { background-color: transparent; color: #FFFFFF33; }
-#app.dark .gauge-blk    { background-color: #FFFFFF11; border-color: #444; }
-#app.dark .gauge-items  { background-color: #FFFFFF00; }
-#app.dark .gauge-text   { background-color: #222222FF; color: #FFFFFFAA; }
-#app.dark .title1       { color: #FFFFFFFF; }
+#app.dark                       { background-color: #303234FF; }
+#app.dark footer                { background-color: transparent; color: #FFFFFF33; }
+#app.dark .gauge-blk            { background-color: #FFFFFF11; border-color: #444; box-shadow: 1px 1px 0 1px #00000055; }
+#app.dark .gauge-items          { background-color: #FFFFFF00; }
+#app.dark .gauge-text           { background-color: #222222FF; color: #FFFFFFAA; }
+#app.dark .gauge-img .emoji     { background-color: #444; box-shadow: 0px 2px 0 0px #00000055; }
+#app.dark input                 { color: #FFFFFF99; }
+#app.dark .title1               { color: #FFFFFFFF; }
 
 /* RESPONSIVE VIEWS */
 @media (min-width: 800px) {

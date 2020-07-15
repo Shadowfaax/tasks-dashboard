@@ -122,13 +122,11 @@ export default {
             // checkForm(event)
         },
         displayInfoToggle: function (event) {
-            console.log(this.displayInfo)
             this.displayInfo = !this.displayInfo
-            console.log(this.displayInfo)
         },
         resetForm: function (event) {
             this.addName = ''
-            this.addEmoji = ''
+            this.$emit('reset-emoji', 'A')
             this.addYears = ''
             this.addDays = ''
             this.addHours = ''
@@ -216,7 +214,7 @@ export default {
 
 <style>
 .widgets-block              { width: 100%; /* display: flex; flex-flow: row wrap; */ }
-.widget                     { flex: 1 3 100%; margin: 16px 0; border-radius: 3px; }
+.widget                     { flex: 1 3 100%; margin: 8px 0; border-radius: 3px; }
 
 .gauge-widgets-container    { width: 100%; }
 .gauge                      { width: 100%; display: flex; flex-flow: row nowrap; justify-content: space-between; align-items: center; }
@@ -226,15 +224,16 @@ export default {
 .gauge-action:hover         { box-shadow: 1px 1px 0px 1px #00000033 inset; transform: translate(1px, 1px); }
 .gauge-reset                { background-color: #AACCCCCC; box-shadow: -1px -1px 0 1px #00000022 inset; }
 .gauge-delete               { background-color: #BB998866; box-shadow: -1px -1px 0 1px #00000022 inset; }
-.gauge-blk                  { flex: 1 1 60%; height: 32px; width: 100%; margin-left: 0/* 36px */; border-radius: 3px; padding: 0; border: 4px solid #FFFFFF; background-color: #FFFFFFCC; box-shadow: 1px 1px 0 1px #11224422, 2px 2px 20px #00000000; background-image: url('../../public/images/patterns/black-twill.png'); box-sizing: content-box; }
+
+.gauge-blk                  { flex: 1 1 60%; height: 34px; width: 100%; margin-left: 0; border-radius: 3px; padding: 0; border: 4px solid #FFFFFF; background-color: #FFFFFFCC; box-shadow: 1px 1px 0 1px #C0C2C5FF, 2px 2px 20px #00000000; background-image: url('../../public/images/patterns/black-twill.png'); box-sizing: content-box; }
 .gauge-blk:hover            { transform: translateX(-1%); cursor: pointer; box-shadow: 1px 1px 0 1px #11224422, 0 6px 14px #00000011; }
 
 .gauge-items                { width: 100%; height: 100%; display: flex; flex-flow: row-reverse nowrap; align-items: center; background-color: #FFFFFFCC; }
-.gauge-img                  { position: relative; left: -6px; z-index: 60; flex: 1 0 34px; }
-.gauge-img .emoji           { display: flex; align-items: center; justify-content: center; position: absolute; width: 40px; height: 40px; border-radius: 3px; text-align: center; font-size: 1.4em; background-color: #FFFFFFFF; box-shadow: 0 0 5px #11224400; }
+.gauge-img                  { position: relative; left: -8px; z-index: 60; flex: 1 0 34px; }
+.gauge-img .emoji           { display: flex; align-items: center; justify-content: center; position: absolute; width: 42px; height: 42px; border-bottom-left-radius: 3px; border-top-left-radius: 3px; text-align: center; font-size: 1.4em; background-color: #FFFFFFFF; box-shadow: 0 2px 0 0 #C0C2C5FF; }
 .gauge-text                 { display: inline-block; max-width: 50vw; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 6px; position: relative; z-index: 60; font-size: .8em; text-transform: uppercase; font-family: 'Roboto'; color: #00000077; background-color: #FFFFFFFF; }
 
-.gauge-progress-container   { width: 100%; height: 100%; position: relative; top: -32px; z-index: 50; display: flex; flex-flow: row nowrap; justify-content: space-between; }
+.gauge-progress-container   { width: 100%; height: 100%; position: relative; top: -34px; z-index: 50; display: flex; flex-flow: row nowrap; justify-content: space-between; }
 .gauge-progress-blk         { width: 100%; height: 100%;  }
 .gauge-progress             { height: 100%; width: 33%; background-color: #00CC99FF; border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
 .gauge-progress.yellow      { background-color: #EEBB44FF; }
