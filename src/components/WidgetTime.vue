@@ -60,12 +60,13 @@ export default {
 
 <style scoped>
 .widget-time-blk { justify-content: center; }
-.widget-date, .widget-time { flex: 0 1 10%; padding: 10px 16px; margin: 0 10px; border-radius: 6px; font-family: 'Roboto', Arial, Helvetica, sans-serif; font-weight: 300; font-size: 1.4em; letter-spacing: 2px; text-align: center; color: #FFFFFFCC; background-color: #00224444; }
+.widget-date, .widget-time { flex: 0 1 10%; margin: 0 10px; font-family: 'Roboto', Arial, Helvetica, sans-serif; font-weight: 300; font-size: 1.4em; letter-spacing: 2px; text-align: center; color: #00000099; background-color: #00224411; cursor: default; }
 
 /* DARK MODE */
-#app.dark .widget-date, #app.dark .widget-time { background-color: #FFFFFF11; }
+#app.dark .widget-date, #app.dark .widget-time { background-color: #FFFFFF11; color: #FFFFFF66; }
 
 /* RESPONSIVE VIEWS */
 @media (min-width: 800px) {
+    .widget-date, .widget-time { padding: 4px 12px; border-radius: 3px; font-size: 1.8em; }
 }
 </style>

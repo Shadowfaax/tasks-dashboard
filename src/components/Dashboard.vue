@@ -64,39 +64,6 @@
 </template>
 
 <script>
-// Form submit
-function submitAddForm () {
-    const storage = localStorage
-    var inputArray = {}
-
-    // TODO: Use Vue binds
-    inputArray['add-name'] = document.getElementById('add-name').value ? document.getElementById('add-name').value : '- - - - -'
-    inputArray['add-emoji'] = document.getElementById('add-emoji').value ? document.getElementById('add-emoji').value : '⏱️'
-    inputArray['add-days'] = document.getElementById('add-days').value ? document.getElementById('add-days').value : 0
-    inputArray['add-years'] = document.getElementById('add-years').value ? document.getElementById('add-years').value : 0
-    inputArray['add-hours'] = document.getElementById('add-hours').value ? document.getElementById('add-hours').value : 0
-    inputArray['add-minutes'] = document.getElementById('add-minutes').value ? document.getElementById('add-minutes').value : 0
-    inputArray['add-seconds'] = document.getElementById('add-seconds').value ? document.getElementById('add-seconds').value : 0
-
-    var newData = {
-        name: inputArray['add-name'],
-        emoji: inputArray['add-emoji'],
-        submitTimestamp: Date.now(),
-        targetTimestamp: Date.now() + ((((inputArray['add-years'] * 365 + inputArray['add-days']) * 24 + inputArray['add-hours']) * 60 + inputArray['add-minutes']) * 60 + inputArray['add-seconds']) * 1000
-    }
-
-    // Getting existing data from local storage
-    let dataS = storage.getItem('data')
-    if (!dataS) {
-        dataS = '{ "dataArray": [] }'
-    }
-    var newDataObj = JSON.parse(dataS)
-
-    // Pushing new data
-    newDataObj.dataArray.push(newData)
-    storage.setItem('data', JSON.stringify(newDataObj))
-}
-
 export default {
     name: 'Dashboard',
     props: {
@@ -119,7 +86,6 @@ export default {
     },
     methods: {
         checkForm: function (event) {
-            // checkForm(event)
         },
         displayInfoToggle: function (event) {
             this.displayInfo = !this.displayInfo
@@ -134,7 +100,27 @@ export default {
             this.addSeconds = ''
         },
         submitAddForm: function (event) {
-            submitAddForm()
+            const storage = localStorage
+
+            // TODO: Error Handler + Numbers
+            var newData = {
+                name: this.addName ? this.addName : '- - - - -',
+                emoji: this.addEmoji ? this.addEmoji : '⏱️',
+                submitTimestamp: Date.now(),
+                targetTimestamp: Date.now() + ((((this.addYears * 365 + this.addDays) * 24 + this.addHours) * 60 + this.addMinutes) * 60 + this.addSeconds) * 1000
+            }
+
+            // Getting existing data from local storage
+            let dataS = storage.getItem('data')
+            if (!dataS) {
+                dataS = '{ "dataArray": [] }'
+            }
+            var newDataObj = JSON.parse(dataS)
+
+            // Pushing new data
+            newDataObj.dataArray.push(newData)
+            storage.setItem('data', JSON.stringify(newDataObj))
+
             this.loadData()
             this.setGaugeToggle()
             this.resetForm()

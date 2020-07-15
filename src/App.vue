@@ -16,7 +16,7 @@
             <div class="dark-mod-btn">
                 <div class="switch-btn" @click="switchVMode" v-bind:class="[ options.darkMode ? 'on' : '' ]"><div class="switch"></div></div>
             </div>
-            <footer>Dev by anthony.prospero@gmail.com <br> {{ version }} - powered by Vue.JS</footer>
+            <footer>Dev by <span class="highlight">anthony.prospero@gmail.com</span> <br> <span class="highlight">{{ version }}</span> - powered by Vue.JS</footer>
         </div>
     </div>
 </template>
@@ -37,7 +37,7 @@ export default {
     },
     data: function () {
         return {
-            version: 'v0.1.1a',
+            version: 'v0.2.0a',
             options: { darkMode: false },
             news: '',
             popupShow: false,
@@ -94,10 +94,10 @@ input::placeholder { color: #999999AA; }
 input[type='submit'],
 button { padding: 2px 15px; font-family: 'Roboto', Arial, Helvetica, sans-serif; font-size: 1em; color: #FFFFFFFF; background-color: #3399CCFF; border: none; border-radius: 3px; box-shadow: -1px -1px 0px 1px #00000033 inset; }
 input[type='submit']:hover,
-button:hover { box-shadow: 1px 1px 0px 1px #00000033 inset; transform: translate(2px, 2px); }
+button:hover { box-shadow: 1px 1px 0px 1px #00000033 inset; transform: translate(2px, 2px); cursor: pointer; }
 form    { width: 100%; }
 a       { text-decoration: none; color: #3399CCFF; }
-footer  { bottom: 0; left: 0; width: 90%; margin: 30px auto 0 auto; padding: 14px; text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: .8em; color: #00000044; background-color: #F0F2F5; border-radius: 6px; }
+footer  { bottom: 0; left: 0; width: 90%; margin: 30px auto 0 auto; padding: 14px; text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: .8em; line-height: 1.6em; color: #00000044; background-color: #F0F2F5; border-radius: 6px; }
 
 /* GENERIC CLASSES */
 .info                   { background-color: #66AACC55; }
@@ -116,8 +116,10 @@ footer  { bottom: 0; left: 0; width: 90%; margin: 30px auto 0 auto; padding: 14p
 .vertical-space-30      { display: block; width: 100%; height: 30px; }
 .vertical-space-50      { display: block; width: 100%; height: 50px; }
 .flex-center-items      { display: flex; flex-flow: row nowrap; justify-content: space-between; align-items: center; }
+.highlight              { color: #000000AA; }
+
 .switch-btn             { width: 48px; height: 24px; border-radius: 12px; display: flex; flex-flow: row nowrap; align-items: center; background-color: #99CCEEFF; box-shadow: 1px 1px 0 1px #00000044 inset; cursor: pointer; }
-.switch-btn .switch     { width: 22px; height: 22px; border-radius: 11px; background-color: #00000044; box-shadow: -1px -1px 0 1px #00000022 inset; }
+.switch-btn .switch     { width: 22px; height: 22px; border-radius: 11px; background-color: #00000066; box-shadow: -1px -1px 0 1px #00000022 inset; }
 .switch-btn.on          { background-color: #336688FF; flex-flow: row-reverse nowrap; }
 .switch-btn::after      { content: '🌞'; position: relative; top: -1px; left: 1px; font-size: 1.0em; opacity: .5; }
 .switch-btn.on::after   { content: '🌚'; left: -2px; }
@@ -149,8 +151,10 @@ footer  { bottom: 0; left: 0; width: 90%; margin: 30px auto 0 auto; padding: 14p
 #app.dark .gauge-items          { background-color: #FFFFFF00; }
 #app.dark .gauge-text           { background-color: #222222FF; color: #FFFFFFAA; }
 #app.dark .gauge-img .emoji     { background-color: #444; box-shadow: 0px 2px 0 0px #00000055; }
-#app.dark input                 { color: #FFFFFF99; }
+#app.dark input[type="text"],
+#app.dark input[type="number"]  { background-color: #FFFFFF11; color: #FFFFFF99; }
 #app.dark .title1               { color: #FFFFFFFF; }
+#app.dark .highlight            { color: #FFFFFFAA; }
 
 /* RESPONSIVE VIEWS */
 @media (min-width: 800px) {
