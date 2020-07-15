@@ -213,9 +213,6 @@ export default {
 </script>
 
 <style>
-.widgets-block              { width: 100%; /* display: flex; flex-flow: row wrap; */ }
-.widget                     { flex: 1 3 100%; margin: 8px 0; border-radius: 3px; }
-
 .gauge-widgets-container    { width: 100%; }
 .gauge                      { width: 100%; display: flex; flex-flow: row nowrap; justify-content: space-between; align-items: center; }
 

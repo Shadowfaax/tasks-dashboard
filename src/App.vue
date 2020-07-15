@@ -1,9 +1,6 @@
 <template>
     <div id="app" v-bind:class="[ options.darkMode ? 'dark' : '' ]">
         <div class="app-blk">
-            <div class="top-btn">
-                <div class="switch-btn" @click="switchVMode" v-bind:class="[ options.darkMode ? 'on' : '' ]"><div class="switch"></div></div>
-            </div>
             <div v-if="popupShow" class="popup-header">
                 <button id="popup-close" @click.prevent="togglePopup">Close</button>
             </div>
@@ -14,7 +11,11 @@
             </div>
             <div class="hidden">{{ news }}</div>
             <Header page-title1="Traq" page-title2="Øn" />
+            <WidgetTime />
             <Dashboard v-bind:add-emoji="selectedEmoji" @openEmojiPanel="toggleEmojiPanel" />
+            <div class="dark-mod-btn">
+                <div class="switch-btn" @click="switchVMode" v-bind:class="[ options.darkMode ? 'on' : '' ]"><div class="switch"></div></div>
+            </div>
             <footer>Dev by anthony.prospero@gmail.com <br> {{ version }} - powered by Vue.JS</footer>
         </div>
     </div>
@@ -22,6 +23,7 @@
 
 <script>
 import Header from './components/Header.vue'
+import WidgetTime from './components/WidgetTime.vue'
 import Dashboard from './components/Dashboard.vue'
 import EmojiList from './components/EmojiList.vue'
 
@@ -29,6 +31,7 @@ export default {
     name: 'App',
     components: {
         Header,
+        WidgetTime,
         Dashboard,
         EmojiList
     },
@@ -94,7 +97,7 @@ input[type='submit']:hover,
 button:hover { box-shadow: 1px 1px 0px 1px #00000033 inset; transform: translate(2px, 2px); }
 form    { width: 100%; }
 a       { text-decoration: none; color: #3399CCFF; }
-footer  { bottom: 0; left: 0; width: 90%; margin: 80px auto 0 auto; padding: 14px; text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: .8em; color: #00000044; background-color: #F0F2F5; border-radius: 6px; }
+footer  { bottom: 0; left: 0; width: 90%; margin: 30px auto 0 auto; padding: 14px; text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: .8em; color: #00000044; background-color: #F0F2F5; border-radius: 6px; }
 
 /* GENERIC CLASSES */
 .info                   { background-color: #66AACC55; }
@@ -120,11 +123,14 @@ footer  { bottom: 0; left: 0; width: 90%; margin: 80px auto 0 auto; padding: 14p
 .switch-btn.on::after   { content: '🌚'; left: -2px; }
 
 /* APP */
-#app { width: 100%; min-height: 100vw; padding: 0 2vw; margin: 0 auto; font-family: Avenir, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; color: #2C3E50; }
-.popup-header { position: fixed; z-index: 9999; top: 0; left: 0; padding: 10px 0; width: 100%; display: flex; flex-flow: row wrap; justify-content: space-around; align-items: center; background-color: #FFFFFFFF; box-shadow: 0 0 6px #00000022; }
-.fullscreen-popup { position: fixed; z-index: 9990; top: 0; left: 0; width: 100%; height: 100%; background-color: #FFFFFF22; backdrop-filter: blur(16px); overflow: auto; }
-.popup-content { margin-top: 60px; }
-.top-btn { position: absolute; top: 8px; right: 6px; }
+#app                { width: 100%; min-height: 100vw; padding: 0 2vw; margin: 0 auto; font-family: Avenir, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; color: #2C3E50; }
+.popup-header       { position: fixed; z-index: 9999; top: 0; left: 0; padding: 10px 0; width: 100%; display: flex; flex-flow: row wrap; justify-content: space-around; align-items: center; background-color: #FFFFFFFF; box-shadow: 0 0 6px #00000022; }
+.fullscreen-popup   { position: fixed; z-index: 9990; top: 0; left: 0; width: 100%; height: 100%; background-color: #FFFFFF22; backdrop-filter: blur(16px); overflow: auto; }
+.popup-content      { margin-top: 60px; }
+.widgets-block      { width: 100%; }
+.widget             { flex: 1 3 100%; margin: 8px 0; border-radius: 3px; }
+
+.dark-mod-btn       { margin-top: 20px; display: flex; justify-content: space-around; }
 
 .info-panel-blk     { display: flex; flex-flow: row wrap; justify-content: flex-end; margin: 0; text-align: right; }
 .info-panel         { padding: 7px 7px; display: flex; flex-flow: row-reverse wrap; justify-content: space-around; align-items: center; /* flex: 0; */ font-size: 1.0em; color: #FFFFFFFF; border-radius: 6px; cursor: default; }
@@ -133,7 +139,7 @@ footer  { bottom: 0; left: 0; width: 90%; margin: 80px auto 0 auto; padding: 14p
 .infop-item         { display: inline-block; flex-grow: 1; overflow: hidden; white-space: nowrap; height: 30px; margin: 2px 3px; padding: 4px 6px; font-size: 12px; text-transform: uppercase; background-color: #11223322; border-radius: 3px; letter-spacing: 1px; text-align: center; display: flex; align-items: center; }
 .infop-item.hidden  { display: none; }
 .infop-item-icon    { font-size: 22px; font-weight: 900; text-transform: lowercase; font-family: 'Times New Roman', Times, serif; }
-.info-toggle        { justify-content: space-around; align-items: center; width: 36spx; height: 30px; text-align: center; cursor: pointer; color: #2288AAFF; background-color: #FFFFFF00; }
+.info-toggle        { display: flex; justify-content: space-around; align-items: center; flex: 0 0 36px; height: 30px; text-align: center; cursor: pointer; color: #2288AAFF; background-color: #FFFFFF00; }
 .info-toggle:hover  { background-color: #FFFFFFCC; }
 
 /* DARK MODE */
@@ -152,7 +158,6 @@ footer  { bottom: 0; left: 0; width: 90%; margin: 80px auto 0 auto; padding: 14p
     #app { min-height: 100vh; }
     .header-block { padding: 36px 0; height: auto; }
     .page-title { font-size: 108px; }
-    .top-btn { position: absolute; margin: 0 -380px 0 0; top: 6px; right: 50%; }
     .app-blk { width: 800px; min-height: 100vh; margin: 0 auto; padding: 50px; padding-top: 10px; background-color: #00000005; }
     .popup-header { width: 800px; left: 50%; margin-left: -400px; }
     .fullscreen-popup { width: 800px; left: 50%; margin-left: -400px; }
