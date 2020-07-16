@@ -11,6 +11,12 @@
             </div>
             <div class="hidden">{{ news }}</div>
             <Header page-title1="Traq" page-title2="Øn" />
+            <div class="widget tips" v-show="options.showTips">
+                <div class="tips-text">{{ tips }}</div>
+                <div class="clearer"></div>
+                <div class="tips-close" @click="switchTipsShow">Don't show tips again</div>
+                <div class="clearer"></div>
+            </div>
             <WidgetTime />
             <Dashboard v-bind:add-emoji="selectedEmoji" @openEmojiPanel="toggleEmojiPanel" />
             <div class="dark-mod-btn">
@@ -39,8 +45,9 @@ export default {
     data: function () {
         return {
             version: 'v0.2.0a',
-            options: { darkMode: false },
+            options: { darkMode: false, showTips: true },
             news: '',
+            tips: 'TraqOn is a web-app which allows you to keep track on different activities in a stressless way. For example if you need to remind yourself to water your cactus every 2 weeks, just set a track on 14 days. Then when you just did your task, click on the reset button to restart the tracker',
             popupShow: false,
             selectedEmoji: ''
         }
@@ -56,23 +63,26 @@ export default {
             const storage = localStorage
             storage.setItem('options', JSON.stringify(this.options))
         },
-        togglePopup: function () {
-            this.popupShow = !this.popupShow
-        },
         switchVMode: function () {
             this.$set(this.options, 'darkMode', !this.options.darkMode)
             this.saveOptions()
+        },
+        switchTipsShow: function () {
+            this.$set(this.options, 'showTips', !this.options.showTips)
+            this.saveOptions()
+        },
+        togglePopup: function () {
+            this.popupShow = !this.popupShow
         },
         toggleEmojiPanel: function () {
             this.togglePopup()
         },
         selectEmoji: function (emoji) {
             this.selectedEmoji = emoji
-            // console.log('coucou ' + emoji)
             this.toggleEmojiPanel()
         },
         resetEmoji: function (emoji) {
-            alert('ù:*;:ù')
+            alert('resetEmoji')
         }
     },
     created: function () {
@@ -109,6 +119,7 @@ footer  { bottom: 0; left: 0; width: 90%; margin: 30px auto 0 auto; padding: 14p
 .bg-white               { background-color: #FFFFFFFF; }
 .bg-dark-yellow         { background-color: #CCAA44FF; }
 .hidden                 { display: none; }
+.clearer                { clear: both; }
 .shrink                 { width: 0; padding: 0; margin: 0; overflow: hidden; }
 .h-space-5              { display: inline-block; width:  5px; }
 .h-space-10             { display: inline-block; width: 10px; }
@@ -133,7 +144,12 @@ footer  { bottom: 0; left: 0; width: 90%; margin: 30px auto 0 auto; padding: 14p
 .fullscreen-popup   { position: fixed; z-index: 9990; top: 0; left: 0; width: 100%; height: 100%; background-color: #FFFFFF22; backdrop-filter: blur(16px); overflow: auto; }
 .popup-content      { margin-top: 60px; }
 .widgets-block      { width: 100%; }
-.widget             { flex: 1 3 100%; margin: 8px 0; border-radius: 3px; }
+.widget             { flex: 1 0 100%; margin: 8px 0; border-radius: 3px; }
+
+.widget.tips        { margin-bottom: 20px; padding: 20px; border-radius: 6px; border: 2px dashed #FFFFFFAA; background-color: #EEDD88FF; }
+.tips-text          { font-size: 15px; letter-spacing: 1px; font-family: 'Roboto', Helvetica, Arial, sans-serif; text-align: justify; line-height: 22px; color: #00000088; }
+.tips-close         { float: right; margin-top: 10px; padding: 3px 6px; border-radius: 3px; font-size: 14px; letter-spacing: 1px; cursor: pointer; color: #FFFFFFFF; background-color: #00000022; }
+.tips-close:hover   { background-color: #00000044; }
 
 .dark-mod-btn       { margin-top: 20px; display: flex; justify-content: space-around; }
 
