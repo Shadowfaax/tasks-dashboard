@@ -165,9 +165,11 @@ footer  { bottom: 0; left: 0; width: 90%; margin: 30px auto 0 auto; padding: 14p
     #app { min-height: 100vh; }
     .header-block { padding: 36px 0; height: auto; }
     .page-title { font-size: 108px; }
+    .app-blk-ovf { width: 800px; min-height: 100vh; margin: 0 auto; }
     .app-blk { width: 800px; min-height: 100vh; margin: 0 auto; padding: 50px; padding-top: 10px; background-color: #00000005; }
     .popup-header { width: 800px; left: 50%; margin-left: -400px; }
     .fullscreen-popup { width: 800px; left: 50%; margin-left: -400px; }
+    /* DARK MODE */
     #app.dark .app-blk { background-color: #00000011; }
     #app.dark footer { background-color: #00000011; color: #FFFFFF33; }
 }

@@ -64,6 +64,7 @@ export default {
 <style scoped>
 .widget-time-blk { justify-content: end; }
 .widget-date, .widget-time { flex: 0 1 auto; margin: 0 10px 0 0; font-family: 'Roboto', Arial, Helvetica, sans-serif; font-weight: 300; font-size: 1.4em; letter-spacing: 2px; text-align: center; color: #00000099; background-color: #00224411; cursor: default; }
+.widget-date:hover, .widget-time:hover { transform: scale(1.1); }
 .time-emoji { display: none; }
 /* DARK MODE */
 #app.dark .widget-date, #app.dark .widget-time { background-color: #FFFFFF11; color: #FFFFFF66; }
@@ -71,6 +72,6 @@ export default {
 /* RESPONSIVE VIEWS */
 @media (min-width: 800px) {
     .widget-date, .widget-time { padding: 4px 12px; border-radius: 3px; font-size: 1.8em; }
-    .time-emoji { display: inline; position: relative; left: -4px; color: #FFF; filter: opacity(.4); }
+    .time-emoji { display: inline; position: relative; left: -4px; top: -3px; font-size: .7em; color: #FFF; filter: opacity(.4); }
 }
 </style>
