@@ -97,7 +97,7 @@ input[type='submit']:hover,
 button:hover { box-shadow: 1px 1px 0px 1px #00000033 inset; transform: translate(2px, 2px); cursor: pointer; }
 form    { width: 100%; }
 a       { text-decoration: none; color: #3399CCFF; }
-footer  { bottom: 0; left: 0; width: 90%; margin: 30px auto 0 auto; padding: 14px; text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: .8em; line-height: 1.6em; color: #00000044; background-color: #F0F2F5; border-radius: 6px; }
+footer  { bottom: 0; left: 0; width: 90%; margin: 30px auto 0 auto; padding: 14px; text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: .8em; line-height: 1.6em; color: #00000044; background-color: #F0F2F577; border-radius: 6px; }
 
 /* GENERIC CLASSES */
 .info                   { background-color: #66AACC55; }
