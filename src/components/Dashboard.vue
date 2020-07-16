@@ -1,9 +1,9 @@
 <template>
     <div class="widgets-block">
 
-        <div class="info-panel-blk">
-            <div class="info-panel right"><!-- ⏳⌛🎛️📊🔍🔎⏱️⏲️ -->
-                <span @click="displayInfoToggle()" class="infop-item info-toggle"><span href="#" class="infop-item-icon">💡<!-- i --></span></span>
+        <div class="info-panel-blk hint">
+            <div class="info-panel right" v-bind:class="[displayInfo ? 'bg-dark-yellow' : '']"><!-- ⏳⌛🎛️📊🔍🔎⏱️⏲️ -->
+                <span @click="displayInfoToggle()" class="infop-item info-toggle"><span href="#" class="infop-item-icon hint-clic">💡<!-- i --></span></span>
                 <span v-bind:class="[displayInfo ? '' : 'hidden']" class="infop-item"><span class="infop-item-icon">🗑️</span><div class="h-space-5"></div>remove gauge</span>
                 <span v-bind:class="[displayInfo ? '' : 'hidden']" class="infop-item"><span class="infop-item-icon">⏱️</span><div class="h-space-5"></div> gauge timer reset</span>
                 <span v-show="false" v-bind:class="[displayInfo ? '' : 'hidden']" class="infop-item"><span class="infop-item-icon">🔍</span><div class="h-space-5"></div> gauge details</span>
@@ -199,6 +199,9 @@ export default {
 </script>
 
 <style>
+.info-panel-blk.hint        { position: absolute; z-index: 600; right: 0; margin-top: -48px; }
+.infop-item-icon.hint-clic  { font-size: 22px; }
+
 .gauge-widgets-container    { width: 100%; }
 .gauge                      { width: 100%; display: flex; flex-flow: row nowrap; justify-content: space-between; align-items: center; }
 
@@ -212,7 +215,7 @@ export default {
 .gauge-blk:hover            { transform: translateX(-1%); cursor: pointer; box-shadow: 1px 1px 0 1px #11224422, 0 6px 14px #00000011; }
 
 .gauge-items                { width: 100%; height: 100%; display: flex; flex-flow: row-reverse nowrap; align-items: center; background-color: #FFFFFFCC; }
-.gauge-img                  { position: relative; left: -8px; z-index: 60; flex: 1 0 34px; }
+.gauge-img                  { position: relative; left: -4px; z-index: 60; flex: 1 0 38px; }
 .gauge-img .emoji           { display: flex; align-items: center; justify-content: center; position: absolute; width: 42px; height: 42px; border-bottom-left-radius: 3px; border-top-left-radius: 3px; text-align: center; font-size: 1.4em; background-color: #FFFFFFFF; box-shadow: 0 2px 0 0 #C0C2C5FF; }
 .gauge-text                 { display: inline-block; max-width: 50vw; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-right: 6px; position: relative; z-index: 60; font-size: .8em; text-transform: uppercase; font-family: 'Roboto'; color: #00000077; background-color: #FFFFFFFF; }
 
@@ -239,6 +242,7 @@ export default {
 .add-widgets-inline-blk .input-blk button:hover { box-shadow: 1px 1px 0px 1px #00000033 inset; transform: translate(2px, 2px); }
 
 @media (min-width: 800px) {
+    .info-panel-blk.hint { right: 50%; margin-right: -360px; margin-top: -55px; }
     .gauge-text { max-width: 70%; }
 }
 </style>

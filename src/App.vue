@@ -107,6 +107,7 @@ footer  { bottom: 0; left: 0; width: 90%; margin: 30px auto 0 auto; padding: 14p
 .warning                { background-color: #BBAA4455; }
 .error                  { background-color: #DD333355; }
 .bg-white               { background-color: #FFFFFFFF; }
+.bg-dark-yellow         { background-color: #CCAA44FF; }
 .hidden                 { display: none; }
 .shrink                 { width: 0; padding: 0; margin: 0; overflow: hidden; }
 .h-space-5              { display: inline-block; width:  5px; }
@@ -137,12 +138,12 @@ footer  { bottom: 0; left: 0; width: 90%; margin: 30px auto 0 auto; padding: 14p
 .dark-mod-btn       { margin-top: 20px; display: flex; justify-content: space-around; }
 
 .info-panel-blk     { display: flex; flex-flow: row wrap; justify-content: flex-end; margin: 0; text-align: right; }
-.info-panel         { width: 100%; padding: 7px 7px; display: flex; flex-flow: row-reverse wrap; justify-content: space-around; align-items: center; /* flex: 0; */ font-size: 1.0em; color: #FFFFFFFF; border-radius: 6px; cursor: default; }
+.info-panel         { width: 100%; padding: 7px 7px; display: flex; flex-flow: column wrap; justify-content: space-around; align-items: flex-end; /* flex: 0; */ font-size: 1.0em; color: #FFFFFFFF; border-radius: 6px; cursor: default; }
 .info-panel.right   { justify-content: end; }
 .info-panel.nobg    { background-color: transparent; border: none; padding: 0; }
 .infop-item         { display: inline-block; flex: 0 1 auto; overflow: hidden; white-space: nowrap; height: 30px; margin: 2px 3px; padding: 4px 6px; font-size: 12px; text-transform: uppercase; background-color: #11223322; border-radius: 3px; letter-spacing: 1px; text-align: center; display: flex; align-items: center; }
 .infop-item.hidden  { display: none; }
-.infop-item-icon    { font-size: 22px; font-weight: 900; text-transform: lowercase; font-family: 'Times New Roman', Times, serif; }
+.infop-item-icon    { font-size: 18px; font-weight: 900; text-transform: lowercase; font-family: 'Times New Roman', Times, serif; }
 .info-toggle        { display: flex; justify-content: space-around; align-items: center; flex: 0 0 36px; height: 30px; text-align: center; cursor: pointer; color: #2288AAFF; background-color: #FFFFFF00; }
 .info-toggle:hover  { background-color: #FFFFFFCC; }
 
