@@ -218,9 +218,9 @@ export default {
 
 .gauge-progress-container   { width: 100%; height: 100%; position: relative; top: -34px; z-index: 50; display: flex; flex-flow: row nowrap; justify-content: space-between; }
 .gauge-progress-blk         { width: 100%; height: 100%;  }
-.gauge-progress             { height: 100%; width: 33%; background-color: #00CC99FF; border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
-.gauge-progress.yellow      { background-color: #EEBB44FF; }
-.gauge-progress.red         { background-color: #DD4444FF; }
+.gauge-progress             { background-color: #00FF55FF; height: 100%; width: 33%; background-color: #00FF55FF; border-top-right-radius: 3px; border-bottom-right-radius: 3px; }
+.gauge-progress.yellow      { background-color: #FFDD11FF; }
+.gauge-progress.red         { background-color: #FF5555FF; }
 .gauge-progress.dark-red    { background-color: #771111BB; }
 
 .widget.add             { margin: 42px 0; display: flex; justify-content: space-around; align-items: center; }
