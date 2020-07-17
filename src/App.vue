@@ -1,29 +1,35 @@
 <template>
     <div id="app" v-bind:class="[ options.darkMode ? 'dark' : '' ]">
-        <div class="app-blk">
-            <div v-if="popupShow" class="popup-header">
-                <button id="popup-close" @click.prevent="togglePopup">Close</button>
+        <div class="app-blk-ovf">
+            <div class="menu"></div>
+            <div class="burger-menu" :class="[menuShow ? 'active' : '']" @click="toggleMenu">
+                <div class="burger-menu-stripe"></div><div class="burger-menu-stripe"></div><div class="burger-menu-stripe"></div>
             </div>
-            <div v-if="popupShow" id="popup" class="fullscreen-popup">
-                <div class="popup-content">
-                    <EmojiList @select-emoji="selectEmoji($event)" />
+            <div class="app-blk" :class="[menuShow ? 'min' : '']">
+                <div v-if="popupShow" class="popup-header">
+                    <button id="popup-close" @click.prevent="togglePopup">Close</button>
                 </div>
+                <div v-if="popupShow" id="popup" class="fullscreen-popup">
+                    <div class="popup-content">
+                        <EmojiList @select-emoji="selectEmoji($event)" />
+                    </div>
+                </div>
+                <div class="hidden">{{ news }}</div>
+                <Header page-title1="Traq" page-title2="Øn" />
+                <div class="widget tips" v-show="options.showTips">
+                    <div class="tips-text">{{ tips }}</div>
+                    <div class="clearer"></div>
+                    <div class="tips-close" @click="switchTipsShow">Don't show tips again</div>
+                    <div class="clearer"></div>
+                </div>
+                <WidgetTime />
+                <Dashboard v-bind:add-emoji="selectedEmoji" @openEmojiPanel="toggleEmojiPanel" />
+                <div class="dark-mod-btn">
+                    <div class="switch-btn" @click="switchVMode" v-bind:class="[ options.darkMode ? 'on' : '' ]"><div class="switch"></div></div>
+                </div>
+                <footer>Dev by <a href="mailto:anthony.prospero@gmail.com" class="highlight">anthony.prospero@gmail.com</a> <br> <span class="highlight">{{ version }}</span> - powered by Vue.JS</footer>
+                <div class="v-space-20"></div>
             </div>
-            <div class="hidden">{{ news }}</div>
-            <Header page-title1="Traq" page-title2="Øn" />
-            <div class="widget tips" v-show="options.showTips">
-                <div class="tips-text">{{ tips }}</div>
-                <div class="clearer"></div>
-                <div class="tips-close" @click="switchTipsShow">Don't show tips again</div>
-                <div class="clearer"></div>
-            </div>
-            <WidgetTime />
-            <Dashboard v-bind:add-emoji="selectedEmoji" @openEmojiPanel="toggleEmojiPanel" />
-            <div class="dark-mod-btn">
-                <div class="switch-btn" @click="switchVMode" v-bind:class="[ options.darkMode ? 'on' : '' ]"><div class="switch"></div></div>
-            </div>
-            <footer>Dev by <a href="mailto:anthony.prospero@gmail.com" class="highlight">anthony.prospero@gmail.com</a> <br> <span class="highlight">{{ version }}</span> - powered by Vue.JS</footer>
-            <div class="v-space-20"></div>
         </div>
     </div>
 </template>
@@ -49,6 +55,7 @@ export default {
             news: '',
             tips: 'TraqOn is a web-app which allows you to keep track on different activities in a stressless way. For example if you need to remind yourself to water your cactus every 2 weeks, just set a track on 14 days. Then when you just did your task, click on the reset button to restart the tracker',
             popupShow: false,
+            menuShow: false,
             selectedEmoji: ''
         }
     },
@@ -70,6 +77,9 @@ export default {
         switchTipsShow: function () {
             this.$set(this.options, 'showTips', !this.options.showTips)
             this.saveOptions()
+        },
+        toggleMenu: function () {
+            this.menuShow = !this.menuShow
         },
         togglePopup: function () {
             this.popupShow = !this.popupShow
@@ -139,7 +149,18 @@ footer  { bottom: 0; left: 0; width: 90%; margin: 30px auto 0 auto; padding: 14p
 .switch-btn.on::after   { content: '🌚'; left: -2px; }
 
 /* APP */
-#app                { width: 100%; min-height: 100vw; padding: 0 2vw; margin: 0 auto; font-family: Avenir, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; color: #2C3E50; background-color: #E0E0E0; }
+#app                { width: 100%; min-height: 100vh; margin: 0 auto; font-family: Avenir, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; color: #2C3E50; background-color: #E0E0E0; }
+.app-blk-ovf        { width: 100%; min-height: 100vh; overflow-x: hidden; background-color: #FFFFFF11; }
+.app-blk            { position: relative; z-index: 600; padding: 0 2vw; background-color: #D4D6D8FF; }
+.app-blk.min        { height: 100vh; overflow: hidden; transform: translateX(80vw) scale(0.8); border-radius: 6px; }
+
+.menu               { width: 100%; min-height: 100vh; overflow-x: hidden; overflow-y: auto; position: fixed; z-index: 400; background-color: #112233FF; }
+.burger-menu        { position: absolute; z-index: 888; left: 6px; top: 6px; width: 50px; height: 40px; display: flex; flex-flow: column nowrap; justify-content: space-between; align-items: center; overflow: hidden; cursor: pointer; }
+.burger-menu-stripe { width: 100%; height: 5px; background-color: #FFFFFFFF; border-radius: 3px; }
+.burger-menu.active .burger-menu-stripe:nth-child(1) { position: relative; top: -2.5px; transform: rotateZ(38deg) scaleX(1.5); transform-origin: center left; border-radius: 0; }
+.burger-menu.active .burger-menu-stripe:nth-child(2) { opacity: 0; }
+.burger-menu.active .burger-menu-stripe:nth-child(3) { position: relative; top: 2.5px; transform: rotateZ(-39deg) scaleX(1.5); transform-origin: center left; border-radius: 0; }
+
 .popup-header       { position: fixed; z-index: 9999; top: 0; left: 0; padding: 10px 0; width: 100%; display: flex; flex-flow: row wrap; justify-content: space-around; align-items: center; background-color: #FFFFFFFF; box-shadow: 0 0 6px #00000022; }
 .fullscreen-popup   { position: fixed; z-index: 9990; top: 0; left: 0; width: 100%; height: 100%; background-color: #FFFFFF22; backdrop-filter: blur(16px); overflow: auto; }
 .popup-content      { margin-top: 60px; }
@@ -165,6 +186,7 @@ footer  { bottom: 0; left: 0; width: 90%; margin: 30px auto 0 auto; padding: 14p
 
 /* DARK MODE */
 #app.dark                       { background-color: #303234FF; }
+#app.dark .app-blk              { background-color: #333537FF; }
 #app.dark footer                { background-color: transparent; color: #FFFFFF33; }
 #app.dark .gauge-blk            { background-color: #FFFFFF11; border-color: #444; box-shadow: 1px 1px 0 1px #00000055; }
 #app.dark .gauge-items          { background-color: #FFFFFF00; }
@@ -181,12 +203,14 @@ footer  { bottom: 0; left: 0; width: 90%; margin: 30px auto 0 auto; padding: 14p
     #app { min-height: 100vh; }
     .header-block { padding: 36px 0; height: auto; }
     .page-title { font-size: 108px; }
-    .app-blk-ovf { width: 800px; min-height: 100vh; margin: 0 auto; }
-    .app-blk { width: 800px; min-height: 100vh; margin: 0 auto; padding: 50px; padding-top: 10px; background-color: #00000005; }
+    .app-blk-ovf { width: 800px; min-height: 100vh; margin: 0 auto; overflow-x: hidden; background-color: #FFFFFF11; }
+    .app-blk { width: 800px; min-height: 100vh; margin: 0 auto; padding: 50px; padding-top: 10px; }
+    .app-blk.min { transform: translateX(600px) scale(0.8); }
+    .menu { width: 800px; min-height: 100vh; margin: 0 auto; padding: 50px; }
+    .burger-menu { left: 50%; top: 20px; margin-left: -380px; }
     .popup-header { width: 800px; left: 50%; margin-left: -400px; }
     .fullscreen-popup { width: 800px; left: 50%; margin-left: -400px; }
     /* DARK MODE */
-    #app.dark .app-blk { background-color: #00000011; }
     #app.dark footer { background-color: #00000011; color: #FFFFFF33; }
 }
 </style>
