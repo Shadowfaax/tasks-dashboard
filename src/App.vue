@@ -156,7 +156,7 @@ footer  { bottom: 0; left: 0; width: 90%; margin: 30px auto 0 auto; padding: 14p
 
 .menu               { width: 100%; min-height: 100vh; overflow-x: hidden; overflow-y: auto; position: fixed; z-index: 400; background-color: #66AACCFF; }
 .burger-menu        { position: absolute; z-index: 888; left: 6px; top: 6px; width: 30px; height: 23px; display: flex; flex-flow: column nowrap; justify-content: space-between; align-items: center; overflow: hidden; cursor: pointer; }
-.burger-menu-stripe { width: 100%; height: 3px; background-color: #444444FF; border-radius: 0; }
+.burger-menu-stripe { width: 100%; height: 3px; background-color: #FFFFFFFF; border-radius: 0; }
 .burger-menu.active .burger-menu-stripe:nth-child(1) { position: relative; top: -1.5px; transform: rotateZ(37deg) scaleX(1.5); transform-origin: center left; border-radius: 0; }
 .burger-menu.active .burger-menu-stripe:nth-child(2) { opacity: 0; }
 .burger-menu.active .burger-menu-stripe:nth-child(3) { position: relative; top: 1.5px; transform: rotateZ(-38deg) scaleX(1.5); transform-origin: center left; border-radius: 0; }
