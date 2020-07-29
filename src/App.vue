@@ -151,15 +151,15 @@ footer  { bottom: 0; left: 0; width: 90%; margin: 30px auto 0 auto; padding: 14p
 /* APP */
 #app                { width: 100%; min-height: 100vh; margin: 0 auto; font-family: Avenir, Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; color: #2C3E50; background-color: #E0E0E0; }
 .app-blk-ovf        { width: 100%; min-height: 100vh; overflow-x: hidden; background-color: #FFFFFF11; }
-.app-blk            { position: relative; z-index: 600; padding: 0 2vw; background-color: #D4D6D8FF; }
+.app-blk            { height: 100vh; overflow: auto; position: relative; z-index: 600; padding: 0 2vw; background-color: #D4D6D8FF; }
 .app-blk.min        { height: 100vh; overflow: hidden; transform: translateX(80vw) scale(0.8); border-radius: 6px; }
 
-.menu               { width: 100%; min-height: 100vh; overflow-x: hidden; overflow-y: auto; position: fixed; z-index: 400; background-color: #112233FF; }
-.burger-menu        { position: absolute; z-index: 888; left: 6px; top: 6px; width: 50px; height: 40px; display: flex; flex-flow: column nowrap; justify-content: space-between; align-items: center; overflow: hidden; cursor: pointer; }
-.burger-menu-stripe { width: 100%; height: 5px; background-color: #FFFFFFFF; border-radius: 3px; }
-.burger-menu.active .burger-menu-stripe:nth-child(1) { position: relative; top: -2.5px; transform: rotateZ(38deg) scaleX(1.5); transform-origin: center left; border-radius: 0; }
+.menu               { width: 100%; min-height: 100vh; overflow-x: hidden; overflow-y: auto; position: fixed; z-index: 400; background-color: #66AACCFF; }
+.burger-menu        { position: absolute; z-index: 888; left: 6px; top: 6px; width: 30px; height: 23px; display: flex; flex-flow: column nowrap; justify-content: space-between; align-items: center; overflow: hidden; cursor: pointer; }
+.burger-menu-stripe { width: 100%; height: 3px; background-color: #444444FF; border-radius: 0; }
+.burger-menu.active .burger-menu-stripe:nth-child(1) { position: relative; top: -1.5px; transform: rotateZ(37deg) scaleX(1.5); transform-origin: center left; border-radius: 0; }
 .burger-menu.active .burger-menu-stripe:nth-child(2) { opacity: 0; }
-.burger-menu.active .burger-menu-stripe:nth-child(3) { position: relative; top: 2.5px; transform: rotateZ(-39deg) scaleX(1.5); transform-origin: center left; border-radius: 0; }
+.burger-menu.active .burger-menu-stripe:nth-child(3) { position: relative; top: 1.5px; transform: rotateZ(-38deg) scaleX(1.5); transform-origin: center left; border-radius: 0; }
 
 .popup-header       { position: fixed; z-index: 9999; top: 0; left: 0; padding: 10px 0; width: 100%; display: flex; flex-flow: row wrap; justify-content: space-around; align-items: center; background-color: #FFFFFFFF; box-shadow: 0 0 6px #00000022; }
 .fullscreen-popup   { position: fixed; z-index: 9990; top: 0; left: 0; width: 100%; height: 100%; background-color: #FFFFFF22; backdrop-filter: blur(16px); overflow: auto; }
